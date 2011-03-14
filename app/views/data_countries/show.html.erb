@@ -1,0 +1,38 @@
+<p>
+  <b>Question:</b>
+  <%=h @data_country.question_id %>
+</p>
+
+<p>
+  <b>Published:</b>
+  <%=h @data_country.published %>
+</p>
+
+<p>
+  <b>System:</b>
+  <%=h @data_country.system %>
+</p>
+
+<p>
+  <b>Evidence:</b>
+  <%=h @data_country.evidence %>
+</p>
+
+<p>
+  <b>Comments:</b>
+  <%=h @data_country.comments %>
+</p>
+
+<p>
+  <b>Response:</b>
+  <%=h @data_country.response_id %>
+</p>
+
+<p>
+  <b>Entry date:</b>
+  <%=h @data_country.entry_date %>
+</p>
+
+
+<%= link_to 'Edit', edit_data_country_path(@data_country) %> |
+<%= link_to 'Back', data_countries_path %>

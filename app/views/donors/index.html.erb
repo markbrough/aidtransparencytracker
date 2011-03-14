@@ -1,0 +1,24 @@
+<h1>Listing donors</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Country</th>
+    <th>Description</th>
+  </tr>
+
+<% @donors.each do |donor| %>
+  <tr>
+    <td><%=h donor.name %></td>
+    <td><%=h donor.country_id %></td>
+    <td><%=h donor.description %></td>
+    <td><%= link_to 'Show', donor %></td>
+    <td><%= link_to 'Edit', edit_donor_path(donor) %></td>
+    <td><%= link_to 'Destroy', donor, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New donor', new_donor_path %>

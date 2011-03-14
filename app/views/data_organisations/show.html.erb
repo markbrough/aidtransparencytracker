@@ -1,0 +1,33 @@
+<p>
+  <b>Question:</b>
+  <%=h @data_organisation.question_id %>
+</p>
+
+<p>
+  <b>Published:</b>
+  <%=h @data_organisation.published %>
+</p>
+
+<p>
+  <b>Evidence:</b>
+  <%=h @data_organisation.evidence %>
+</p>
+
+<p>
+  <b>Comments:</b>
+  <%=h @data_organisation.comments %>
+</p>
+
+<p>
+  <b>Response:</b>
+  <%=h @data_organisation.response_id %>
+</p>
+
+<p>
+  <b>Entry date:</b>
+  <%=h @data_organisation.entry_date %>
+</p>
+
+
+<%= link_to 'Edit', edit_data_organisation_path(@data_organisation) %> |
+<%= link_to 'Back', data_organisations_path %>

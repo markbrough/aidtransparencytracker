@@ -1,0 +1,38 @@
+<p>
+  <b>Question:</b>
+  <%=h @activity.question.question_long %>
+</p>
+
+<p>
+  <b>Published:</b>
+  <%=h @activity.published %>
+</p>
+
+<p>
+  <b>System:</b>
+  <%=h @activity.system %>
+</p>
+
+<p>
+  <b>Evidence:</b>
+  <%=h @activity.evidence %>
+</p>
+
+<p>
+  <b>Comments:</b>
+  <%=h @activity.comments %>
+</p>
+
+<p>
+  <b>Response:</b>
+  <%=h @activity.response_id %>
+</p>
+
+<p>
+  <b>Entry date:</b>
+  <%=h @activity.entry_date %>
+</p>
+
+
+<%= link_to 'Edit', edit_response_activity_path(@response, @activity) %> |
+<%= link_to 'Back', response_activities_path(@response) %>

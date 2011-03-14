@@ -1,0 +1,33 @@
+<h1>Listing activities</h1>
+
+<table>
+  <tr>
+    <th>Question</th>
+    <th>Published</th>
+    <th>System</th>
+    <th>Evidence</th>
+    <th>Comments</th>
+    <th>Response</th>
+    <th>Entry date</th>
+  </tr>
+
+<% @activities.each do |activity| %>
+  <tr>
+    <td><%=h activity.question_id %></td>
+    <td><%=h activity.published %></td>
+    <td><%=h activity.system %></td>
+    <td><%=h activity.evidence %></td>
+    <td><%=h activity.comments %></td>
+    <td><%=h activity.response_id %></td>
+    <td><%=h activity.entry_date %></td>
+    <td><%= link_to 'Show', [@response, activity] %></td>
+    <td><%= link_to 'Edit', edit_response_activity_path(@response, activity) %></td>
+    <td><%= link_to 'Destroy', [@response, activity], :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New activity', new_response_activity_path(@response) %>
+<%= link_to 'Back to Responses', responses_path %>

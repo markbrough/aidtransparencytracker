@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  question_id: 1
+  published: 1
+  system: MyString
+  evidence: MyText
+  comments: MyText
+  response_id: 1
+  entry_date: 2011-02-21
+
+two:
+  question_id: 1
+  published: 1
+  system: MyString
+  evidence: MyText
+  comments: MyText
+  response_id: 1
+  entry_date: 2011-02-21

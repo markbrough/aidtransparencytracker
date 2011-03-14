@@ -1,0 +1,30 @@
+<h1>Listing data_organisations</h1>
+
+<table>
+  <tr>
+    <th>Question</th>
+    <th>Published</th>
+    <th>Evidence</th>
+    <th>Comments</th>
+    <th>Response</th>
+    <th>Entry date</th>
+  </tr>
+
+<% @data_organisations.each do |data_organisation| %>
+  <tr>
+    <td><%=h data_organisation.question_id %></td>
+    <td><%=h data_organisation.published %></td>
+    <td><%=h data_organisation.evidence %></td>
+    <td><%=h data_organisation.comments %></td>
+    <td><%=h data_organisation.response_id %></td>
+    <td><%=h data_organisation.entry_date %></td>
+    <td><%= link_to 'Show', data_organisation %></td>
+    <td><%= link_to 'Edit', edit_data_organisation_path(data_organisation) %></td>
+    <td><%= link_to 'Destroy', data_organisation, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New data_organisation', new_data_organisation_path %>

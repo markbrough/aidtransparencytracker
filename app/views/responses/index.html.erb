@@ -1,0 +1,53 @@
+<h1>Listing responses</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Donor</th>
+    <th>Recipient</th>
+    <th>Response type</th>
+    <th>Entry date</th>
+    <th>Description</th>
+    <th>Completed</th>
+    <th>Status</th>
+  </tr>
+
+<% @responses.each do |response| %>
+  <tr>
+    <td><%=h response.user_id %></td>
+    <td><%=h response.donor_id %></td>
+    <td><%=h response.recipient_id %></td>
+
+	<% if response.response_type == 1
+		@this_response_type = "Activity"
+	   elsif response.response_type == 2
+		@this_response_type = "Country"
+	   elsif response.respone_type == 3
+		@this_response_type = "Organisation"
+	end %>
+
+    <td><%=h @this_response_type %></td>
+    <td><%=h response.entry_date %></td>
+    <td><%=h response.description %></td>
+    <td><% if response.response_type == 1
+		@this_percentage_complete = (((response.activities.count)*100)/30)
+	   elsif response.response_type == 2
+		@this_percentage_complete = (((response.activities.count)*100)/4)
+	   elsif response.respone_type == 3
+		@this_percentage_complete = (((response.activities.count)*100)/3)
+	end %>
+	<%=h @this_percentage_complete %>%</td>
+    <td><%=h response.status %></td>
+    <td><%= link_to 'Show', response %></td>
+<% if response.response_type == 1 %>
+    <td><%= link_to 'Activity Questions', response_activities_path(response) %></td>
+<% end %>
+    <td><%= link_to 'Edit', edit_response_path(response) %></td>
+    <td><%= link_to 'Destroy', response, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New response', new_response_path %>

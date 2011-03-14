@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  question_long: MyText
+  question_short: MyString
+  description: MyText
+  example: MyText
+  question_type: 1
+
+two:
+  question_long: MyText
+  question_short: MyString
+  description: MyText
+  example: MyText
+  question_type: 1

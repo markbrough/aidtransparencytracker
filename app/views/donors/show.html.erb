@@ -1,0 +1,18 @@
+<p>
+  <b>Name:</b>
+  <%=h @donor.name %>
+</p>
+
+<p>
+  <b>Country:</b>
+  <%=h @donor.country_id %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @donor.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_donor_path(@donor) %> |
+<%= link_to 'Back', donors_path %>

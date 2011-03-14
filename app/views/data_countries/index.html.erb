@@ -1,0 +1,32 @@
+<h1>Listing data_countries</h1>
+
+<table>
+  <tr>
+    <th>Question</th>
+    <th>Published</th>
+    <th>System</th>
+    <th>Evidence</th>
+    <th>Comments</th>
+    <th>Response</th>
+    <th>Entry date</th>
+  </tr>
+
+<% @data_countries.each do |data_country| %>
+  <tr>
+    <td><%=h data_country.question_id %></td>
+    <td><%=h data_country.published %></td>
+    <td><%=h data_country.system %></td>
+    <td><%=h data_country.evidence %></td>
+    <td><%=h data_country.comments %></td>
+    <td><%=h data_country.response_id %></td>
+    <td><%=h data_country.entry_date %></td>
+    <td><%= link_to 'Show', data_country %></td>
+    <td><%= link_to 'Edit', edit_data_country_path(data_country) %></td>
+    <td><%= link_to 'Destroy', data_country, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New data_country', new_data_country_path %>

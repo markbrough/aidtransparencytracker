@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user_id: 1
+  donor_id: 1
+  recipient_id: 1
+  response_type: 1
+  entry_date: 2011-02-21
+  description: MyText
+  status: 1
+
+two:
+  user_id: 1
+  donor_id: 1
+  recipient_id: 1
+  response_type: 1
+  entry_date: 2011-02-21
+  description: MyText
+  status: 1

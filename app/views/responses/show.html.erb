@@ -1,0 +1,49 @@
+<p>
+  <b>User:</b>
+  <%=h @response.user_id %>
+</p>
+
+<p>
+  <b>Donor:</b>
+  <%=h @response.donor_id %>
+</p>
+
+<p>
+  <b>Recipient:</b>
+  <%=h @response.recipient_id %>
+</p>
+
+<p>
+  <b>Response type:</b>
+  <%=h @response.response_type %>
+</p>
+
+<p>
+  <b>Entry date:</b>
+  <%=h @response.entry_date %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @response.description %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%=h @response.status %>
+</p>
+
+<h3>Activities</h3>
+<table>
+  <tr>
+    <th>Question number</th>
+  </tr>
+<% for activity in @response.activities %>
+<tr>
+  <td><%=h activity.question_id %></td>
+</tr>
+<% end %>
+</table>
+
+<%= link_to 'Edit', edit_response_path(@response) %> |
+<%= link_to 'Back', responses_path %>

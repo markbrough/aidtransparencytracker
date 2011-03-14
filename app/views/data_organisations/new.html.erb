@@ -1,0 +1,35 @@
+<h1>New data_organisation</h1>
+
+<% form_for(@data_organisation) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :question_id %><br />
+    <%= f.text_field :question_id %>
+  </p>
+  <p>
+    <%= f.label :published %><br />
+    <%= f.text_field :published %>
+  </p>
+  <p>
+    <%= f.label :evidence %><br />
+    <%= f.text_area :evidence %>
+  </p>
+  <p>
+    <%= f.label :comments %><br />
+    <%= f.text_area :comments %>
+  </p>
+  <p>
+    <%= f.label :response_id %><br />
+    <%= f.text_field :response_id %>
+  </p>
+  <p>
+    <%= f.label :entry_date %><br />
+    <%= f.date_select :entry_date %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', data_organisations_path %>
