@@ -43,12 +43,6 @@
 <% if response.response_type == 1 %>
     <td><%= link_to 'Activity Questions', response_activities_path(response) %></td>
 <% end %>
-<% if response.response_type == 2 %>
-    <td><%= link_to 'Country Questions', response_data_countries_path(response) %></td>
-<% end %>
-<% if response.response_type == 3 %>
-    <td><%= link_to 'Organisation Questions', response_data_organisations_path(response) %></td>
-<% end %>
     <td><%= link_to 'Edit', edit_response_path(response) %></td>
     <td><%= link_to 'Destroy', response, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
