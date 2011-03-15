@@ -1,15 +1,33 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  username: MyString
-  password: MyString
-  email: MyString
-  organisation_name: MyText
-  country_id: 1
+  login: 
+  email: 
+  crypted_password: 
+  password_salt: 
+  persistence_token: 
+  single_access_token: 
+  perishable_token: 
+  login_count: 
+  failed_login_count: 
+  last_request_at: 
+  current_login_at: 
+  last_login_at: 
+  current_login_ip: 
+  last_login_ip: MyString
 
 two:
-  username: MyString
-  password: MyString
-  email: MyString
-  organisation_name: MyText
-  country_id: 1
+  login: 
+  email: 
+  crypted_password: 
+  password_salt: 
+  persistence_token: 
+  single_access_token: 
+  perishable_token: 
+  login_count: 
+  failed_login_count: 
+  last_request_at: 
+  current_login_at: 
+  last_login_at: 
+  current_login_ip: 
+  last_login_ip: MyString

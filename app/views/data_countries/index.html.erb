@@ -1,4 +1,4 @@
-<h1>Listing data_countries</h1>
+<h1>Listing Country Questions</h1>
 
 <table>
   <tr>
@@ -20,13 +20,14 @@
     <td><%=h data_country.comments %></td>
     <td><%=h data_country.response_id %></td>
     <td><%=h data_country.entry_date %></td>
-    <td><%= link_to 'Show', data_country %></td>
-    <td><%= link_to 'Edit', edit_data_country_path(data_country) %></td>
-    <td><%= link_to 'Destroy', data_country, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Show', [@response, data_country] %></td>
+    <td><%= link_to 'Edit', edit_response_data_country_path(@response, data_country) %></td>
+    <td><%= link_to 'Destroy', [@response, data_country], :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New data_country', new_data_country_path %>
+<%= link_to 'New Country Data', new_response_data_country_path(@response) %>
+<%= link_to 'Back to Responses', responses_path %>
