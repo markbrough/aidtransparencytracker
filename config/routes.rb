@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :question_types
+
   
   map.resource :account, :controller => "users"
   
