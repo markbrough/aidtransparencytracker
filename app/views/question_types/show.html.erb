@@ -1,0 +1,13 @@
+<p>
+  <b>Name:</b>
+  <%=h @question_type.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @question_type.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_question_type_path(@question_type) %> |
+<%= link_to 'Back', question_types_path %>

@@ -1,0 +1,42 @@
+<% form_for([@response, @activity]) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :question_id %><br />   
+<%= f.select :question_id, Question.find(:all , :order => "id") . collect { |s|#
+	[(s.id.to_s + ". " + s.question_long), s.id]} %>
+  </p>
+  <p>
+    <%= f.label :published %><br />
+    <%= f.select (:published, [ ['1) Yes, this donor publishes this information systematically for each activity', '1'],
+				['2) Yes, this donor publishes this information sporadically on an ad hoc basis', '2'],
+				['3) No, but this donor does collect this data', '3'],
+				['4) No, and this donor doesn\'t collect this data either', '4'],
+				['5) Don\'t know', '5']
+					]) %>
+  </p>
+  <p>
+    <%= f.label :system %><br />
+    <%= f.text_field :system %>
+  </p>
+  <p>
+    <%= f.label :evidence %><br />
+    <%= f.text_area :evidence %>
+  </p>
+  <p>
+    <%= f.label :comments %><br />
+    <%= f.text_area :comments %>
+  </p>
+  <p>
+    <%= f.label :response_id %><br />
+    <%= f.select :response_id, Response.find(:all , :order => "entry_date") . collect { |s|#
+	[(s.entry_date), s.id]} %>
+  </p>
+  <p>
+    <%= f.label :entry_date %><br />
+    <%= f.date_select :entry_date %>
+  </p>
+  <p>
+    <%= f.submit 'Submit' %>
+  </p>
+<% end %>
