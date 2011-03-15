@@ -10407,3 +10407,35 @@ Rendering responses/index
   [4;35;1mUser Update (0.6ms)[0m   [0mUPDATE "users" SET "updated_at" = '2011-03-15 17:46:35', "perishable_token" = 'ozYXNzMtEdfy5iGmC', "last_request_at" = '2011-03-15 17:46:35' WHERE "id" = 1[0m
 Rendered _navigation (143.5ms)
 Completed in 178ms (View: 168, DB: 3) | 200 OK [http://localhost/responses]
+  [4;36;1mSQL (0.9ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateActivities (20110221231511)
+Migrating to CreateResponses (20110221231915)
+Migrating to CreateDataCountries (20110221232050)
+Migrating to CreateDataOrganisations (20110221232138)
+Migrating to CreateDonors (20110221232214)
+Migrating to CreateCountries (20110221232239)
+Migrating to CreateQuestions (20110221232355)
+Migrating to CreateUsers (20110315152018)
+Migrating to AddRoleColumnToUser (20110315162403)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("activities")[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("countries")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("data_countries")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("data_organisations")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("donors")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("questions")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("responses")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("users")[0m
