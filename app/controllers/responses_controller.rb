@@ -48,7 +48,7 @@ class ResponsesController < ApplicationController
     respond_to do |format|
       if @response.save
         flash[:notice] = 'Response was successfully created.'
-        format.html { redirect_to(response_activities_path(@response)) }
+        format.html { redirect_to(new_response_activity_path(@response)) }
         format.xml  { render :xml => @response, :status => :created, :location => @response }
       else
         format.html { render :action => "new" }
