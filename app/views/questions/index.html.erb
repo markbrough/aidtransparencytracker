@@ -2,7 +2,35 @@
 
 <% @question_types.each do |question_type| %>
 <h2><%=h question_type.name %></h2>
+	<% @questions = Question.find(:all, :conditions => { :question_type => question_type.id } ) 
+	#if @questions.count > 0
+	%>
 
+		<table>
+		  <tr>
+		    <th>Question long</th>
+		    <th>Question short</th>
+		    <th>Description</th>
+		    <th>Example</th>
+		    <th>Question type</th>
+		  </tr>
+
+		<%	@questions.each do |question| %>
+		  <tr>
+		    <td><%=h question.question_long %></td>
+		    <td><%=h question.question_short %></td>
+		    <td><%=h question.description %></td>
+		    <td><%=h question.example %></td>
+		    <td><%=h question.question_type %></td>
+		    <td><%= link_to 'Show', question %></td>
+		    <td><%= link_to 'Edit', edit_question_path(question) %></td>
+		    <td><%= link_to 'Destroy', question, :confirm => 'Are you sure?', :method => :delete %></td>
+		  </tr>
+		<% end %>
+		</table>
+	<% #else %>
+	<p>There are no currently no questions in this category of questions.</p>
+	<% #end %>
 
 <% end %>
 
