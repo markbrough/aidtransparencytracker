@@ -31,6 +31,7 @@
 <% 
 #@this_percentage_complete_real = ((response.activities.count.to_f) / (QuestionType.count.to_f))*100
 %>
+<td> </td>
 <!--    <td><%=h @this_percentage_complete_real %>%</td> -->
     <td><%=h response.status %></td>
     <td><%= link_to 'Show', response %></td>
