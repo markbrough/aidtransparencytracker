@@ -1,11 +1,13 @@
 <% form_for([@response, @activity]) do |f| %>
   <%= f.error_messages %>
-  <p>
+
 <% @questions.each do |tq| %>
     <h2><%= tq.id.to_s + ". " + tq.question_long %></h2>
+<% if tq.example != "" %>
+<h3><i>e.g. <%= tq.example %></i></h3>
+<% end %>
 <%= hidden_field(tq.id, :question_id, :value => tq.id) %>
 
-  </p>
   <p>
     <%= select(tq.id, :published, [ ['1) Yes, this donor publishes this information systematically for each activity', '1'],
 				['2) Yes, this donor publishes this information sporadically on an ad hoc basis', '2'],
