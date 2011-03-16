@@ -23541,3 +23541,65 @@ Rendering responses/index
   [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT count(*) AS count_all FROM "users" WHERE (last_request_at > '2011-03-16 12:09:00') [0m
 Rendered _navigation (6.1ms)
 Completed in 126ms (View: 117, DB: 2) | 200 OK [http://localhost/responses]
+
+
+Processing ResponsesController#index (for 127.0.0.1 at 2011-03-16 12:31:57) [GET]
+  Parameters: {"action"=>"index", "controller"=>"responses"}
+  [4;35;1mResponse Load (0.7ms)[0m   [0mSELECT * FROM "responses" [0m
+Rendering template within layouts/application
+Rendering responses/index
+  [4;36;1mUser Load (0.5ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mDonor Load (0.2ms)[0m   [0mSELECT * FROM "donors" WHERE ("donors"."id" = 1) [0m
+  [4;36;1mCountry Load (0.2ms)[0m   [0;1mSELECT * FROM "countries" WHERE ("countries"."id" = 1) [0m
+  [4;35;1mQuestionType Load (0.2ms)[0m   [0mSELECT * FROM "question_types" WHERE ("question_types"."id" = 1) [0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT count(*) AS count_all FROM "users" WHERE (last_request_at > '2011-03-16 12:21:57') [0m
+Rendered _navigation (5.3ms)
+Completed in 47ms (View: 39, DB: 2) | 200 OK [http://localhost/responses]
+
+
+Processing ActivitiesController#index (for 127.0.0.1 at 2011-03-16 12:32:00) [GET]
+  Parameters: {"action"=>"index", "response_id"=>"1", "controller"=>"activities"}
+  [4;35;1mResponse Load (0.3ms)[0m   [0mSELECT * FROM "responses" WHERE ("responses"."id" = 1) [0m
+
+ArgumentError (Unknown key(s): order_by):
+  app/controllers/activities_controller.rb:11:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (103.9ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ActivitiesController#index (for 127.0.0.1 at 2011-03-16 12:32:22) [GET]
+  Parameters: {"action"=>"index", "response_id"=>"1", "controller"=>"activities"}
+  [4;36;1mResponse Load (0.3ms)[0m   [0;1mSELECT * FROM "responses" WHERE ("responses"."id" = 1) [0m
+  [4;35;1mQuestion Load (0.5ms)[0m   [0mSELECT * FROM "questions" ORDER BY id[0m
+Rendering template within layouts/application
+Rendering activities/index
+  [4;36;1mActivity Load (0.4ms)[0m   [0;1mSELECT * FROM "activities" WHERE ("activities".response_id = 1) [0m
+  [4;35;1mQuestion Load (0.3ms)[0m   [0mSELECT * FROM "questions" WHERE ("questions"."id" = 1) [0m
+  [4;36;1mQuestion Load (0.3ms)[0m   [0;1mSELECT * FROM "questions" WHERE ("questions"."id" = 2) [0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT count(*) AS count_all FROM "users" WHERE (last_request_at > '2011-03-16 12:22:22') [0m
+Rendered _navigation (14.3ms)
+Completed in 49ms (View: 30, DB: 2) | 200 OK [http://localhost/responses/1/activities]
+
+
+Processing ActivitiesController#new (for 127.0.0.1 at 2011-03-16 12:32:26) [GET]
+  Parameters: {"action"=>"new", "response_id"=>"1", "controller"=>"activities"}
+  [4;36;1mResponse Load (0.3ms)[0m   [0;1mSELECT * FROM "responses" WHERE ("responses"."id" = 1) [0m
+  [4;35;1mQuestion Load (0.5ms)[0m   [0mSELECT * FROM "questions" [0m
+Rendering template within layouts/application
+Rendering activities/new
+Rendered activities/_form (24.4ms)
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT count(*) AS count_all FROM "users" WHERE (last_request_at > '2011-03-16 12:22:27') [0m
+Rendered _navigation (84.1ms)
+Completed in 129ms (View: 111, DB: 1) | 200 OK [http://localhost/responses/1/activities/new]

@@ -8,7 +8,7 @@ class ActivitiesController < ApplicationController
   # GET /activities
   # GET /activities.xml
   def index
-  @questions = Question.find(:all)
+  @questions = Question.find(:all, :order => :id)
   @activities = @response.activities
   # was @activities = Activity.all
 
