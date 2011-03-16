@@ -115,7 +115,8 @@ class ActivitiesController < ApplicationController
     @activity.destroy
 
     respond_to do |format|
-      format.html { redirect_to(response_activities_path(@response)) }
+# need to check the type of response (activity/country/organisation) and redirect accordingly
+      format.html { redirect_to(new_response_activity_path(@response)) }
 	# was redirect_to(activities_url)
       format.xml  { head :ok }
     end
