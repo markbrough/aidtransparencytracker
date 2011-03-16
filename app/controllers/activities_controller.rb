@@ -33,7 +33,7 @@ class ActivitiesController < ApplicationController
   # GET /activities/new
   # GET /activities/new.xml
   def new
-    @questions = Question.find(:all)
+    @questions = Question.find(:all, :order => :id)
     @activity = @response.activities.build
     # was @activity = Activity.new
 
@@ -45,7 +45,7 @@ class ActivitiesController < ApplicationController
 
   # GET /activities/1/edit
   def edit
-  @questions = Question.find(:all)
+  @questions = Question.find(:all, :order => :id)
     @activity = @response.activities.find(params[:id])
     # was @activity = Activity.find(params[:id])
   end
