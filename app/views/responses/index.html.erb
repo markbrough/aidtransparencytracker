@@ -28,10 +28,10 @@
     <td><%=h response.entry_date %></td>
     <td><%=h response.description %></td>
 
-<td><% 
+<% 
 #@this_percentage_complete_real = ((response.activities.count.to_f) / (QuestionType.count.to_f))*100
-%></td>
-    <td><%=h @this_percentage_complete_real %>%</td>
+%>
+<!--    <td><%=h @this_percentage_complete_real %>%</td> -->
     <td><%=h response.status %></td>
     <td><%= link_to 'Show', response %></td>
 <% if response.response_type == 1 %>
