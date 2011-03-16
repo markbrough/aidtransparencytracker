@@ -1,6 +1,5 @@
 <h1>Listing Questions</h1>
 
-
 <% @question_types.each do |question_type| %>
 <h2><%=h question_type.name %></h2>
 	<% @questions = Question.find(:all, :conditions => { :question_type => question_type.id } ) 

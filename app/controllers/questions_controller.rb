@@ -3,6 +3,7 @@ class QuestionsController < ApplicationController
   # GET /questions.xml
   def index
 
+
     @question_types = QuestionType.find(:all)
  #   @questions = Question.find(:all, :conditions => { :question_type => @question_types.id } )
 #    @questions = Question.all
