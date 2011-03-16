@@ -22814,3 +22814,33 @@ Rendered responses/_form (28.6ms)
   [4;35;1mUser Update (0.6ms)[0m   [0mUPDATE "users" SET "updated_at" = '2011-03-16 00:46:09', "perishable_token" = 'qb2N0nBui9DEWEYtQk', "last_request_at" = '2011-03-16 00:46:09' WHERE "id" = 1[0m
 Rendered _navigation (142.3ms)
 Completed in 182ms (View: 171, DB: 3) | 200 OK [http://localhost/responses/new]
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2011-03-16 00:48:32) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestionType Load (0.9ms)[0m   [0;1mSELECT * FROM "question_types" [0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mQuestion Load (0.6ms)[0m   [0mSELECT * FROM "questions" WHERE ("questions"."question_type" = 1) [0m
+  [4;36;1mQuestion Load (0.2ms)[0m   [0;1mSELECT * FROM "questions" WHERE ("questions"."question_type" = 2) [0m
+  [4;35;1mQuestion Load (0.2ms)[0m   [0mSELECT * FROM "questions" WHERE ("questions"."question_type" = 3) [0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT count(*) AS count_all FROM "users" WHERE (last_request_at > '2011-03-16 00:38:32') [0m
+  [4;35;1mUser Load (0.5ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+  [4;36;1mUser Update (0.7ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2011-03-16 00:48:32', "perishable_token" = 'EX9WLtpp6dw7uZd42N9Q', "last_request_at" = '2011-03-16 00:48:32' WHERE "id" = 1[0m
+Rendered _navigation (150.6ms)
+Completed in 273ms (View: 264, DB: 3) | 200 OK [http://localhost/questions]
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2011-03-16 00:56:04) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;35;1mQuestionType Load (0.9ms)[0m   [0mSELECT * FROM "question_types" [0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;36;1mQuestion Load (0.5ms)[0m   [0;1mSELECT * FROM "questions" WHERE ("questions"."question_type" = 1) [0m
+  [4;35;1mQuestion Load (0.2ms)[0m   [0mSELECT * FROM "questions" WHERE ("questions"."question_type" = 2) [0m
+  [4;36;1mQuestion Load (0.1ms)[0m   [0;1mSELECT * FROM "questions" WHERE ("questions"."question_type" = 3) [0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT count(*) AS count_all FROM "users" WHERE (last_request_at > '2011-03-16 00:46:04') [0m
+  [4;36;1mUser Load (0.5ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+  [4;35;1mUser Update (0.6ms)[0m   [0mUPDATE "users" SET "updated_at" = '2011-03-16 00:56:04', "perishable_token" = '0T0pm4OTKpeNgQiB2Zu', "last_request_at" = '2011-03-16 00:56:04' WHERE "id" = 1[0m
+Rendered _navigation (143.0ms)
+Completed in 171ms (View: 163, DB: 3) | 200 OK [http://localhost/questions/]
