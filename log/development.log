@@ -22859,3 +22859,100 @@ Rendering questions/index
   [4;36;1mUser Update (0.8ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2011-03-16 01:02:30', "perishable_token" = 'SE2gxFoF0M7dUBPgeh9', "last_request_at" = '2011-03-16 01:02:30' WHERE "id" = 1[0m
 Rendered _navigation (147.2ms)
 Completed in 248ms (View: 240, DB: 3) | 200 OK [http://localhost/questions/]
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2011-03-16 01:09:49) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;35;1mQuestionType Load (0.8ms)[0m   [0mSELECT * FROM "question_types" [0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;36;1mQuestion Load (0.5ms)[0m   [0;1mSELECT * FROM "questions" WHERE ("questions"."question_type" = 1) [0m
+  [4;35;1mQuestion Load (0.2ms)[0m   [0mSELECT * FROM "questions" WHERE ("questions"."question_type" = 2) [0m
+  [4;36;1mQuestion Load (0.1ms)[0m   [0;1mSELECT * FROM "questions" WHERE ("questions"."question_type" = 3) [0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT count(*) AS count_all FROM "users" WHERE (last_request_at > '2011-03-16 00:59:49') [0m
+  [4;36;1mUser Load (0.5ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+  [4;35;1mUser Update (0.6ms)[0m   [0mUPDATE "users" SET "updated_at" = '2011-03-16 01:09:49', "perishable_token" = 'oS1SGnlGgj3zbr59y15P', "last_request_at" = '2011-03-16 01:09:49' WHERE "id" = 1[0m
+Rendered _navigation (142.7ms)
+Completed in 170ms (View: 162, DB: 3) | 200 OK [http://localhost/questions/]
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2011-03-16 01:09:50) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestionType Load (0.8ms)[0m   [0;1mSELECT * FROM "question_types" [0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mQuestion Load (0.5ms)[0m   [0mSELECT * FROM "questions" WHERE ("questions"."question_type" = 1) [0m
+  [4;36;1mQuestion Load (0.2ms)[0m   [0;1mSELECT * FROM "questions" WHERE ("questions"."question_type" = 2) [0m
+  [4;35;1mQuestion Load (0.1ms)[0m   [0mSELECT * FROM "questions" WHERE ("questions"."question_type" = 3) [0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT count(*) AS count_all FROM "users" WHERE (last_request_at > '2011-03-16 00:59:50') [0m
+  [4;35;1mUser Load (0.5ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+  [4;36;1mUser Update (0.6ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2011-03-16 01:09:50', "perishable_token" = '1sDGu6HyCD5FY63lgIq', "last_request_at" = '2011-03-16 01:09:50' WHERE "id" = 1[0m
+Rendered _navigation (133.7ms)
+Completed in 219ms (View: 212, DB: 3) | 200 OK [http://localhost/questions/]
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2011-03-16 01:09:51) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;35;1mQuestionType Load (0.8ms)[0m   [0mSELECT * FROM "question_types" [0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;36;1mQuestion Load (0.5ms)[0m   [0;1mSELECT * FROM "questions" WHERE ("questions"."question_type" = 1) [0m
+  [4;35;1mQuestion Load (0.2ms)[0m   [0mSELECT * FROM "questions" WHERE ("questions"."question_type" = 2) [0m
+  [4;36;1mQuestion Load (0.1ms)[0m   [0;1mSELECT * FROM "questions" WHERE ("questions"."question_type" = 3) [0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT count(*) AS count_all FROM "users" WHERE (last_request_at > '2011-03-16 00:59:51') [0m
+  [4;36;1mUser Load (0.5ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+  [4;35;1mUser Update (0.7ms)[0m   [0mUPDATE "users" SET "updated_at" = '2011-03-16 01:09:51', "perishable_token" = 'e2VsmaOPO7Nnx6qyJudT', "last_request_at" = '2011-03-16 01:09:51' WHERE "id" = 1[0m
+Rendered _navigation (129.6ms)
+Completed in 157ms (View: 149, DB: 3) | 200 OK [http://localhost/questions/]
+
+
+Processing ResponsesController#index (for 127.0.0.1 at 2011-03-16 01:09:52) [GET]
+  Parameters: {"action"=>"index", "controller"=>"responses"}
+  [4;36;1mResponse Load (0.8ms)[0m   [0;1mSELECT * FROM "responses" [0m
+Rendering template within layouts/application
+Rendering responses/index
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mDonor Load (0.3ms)[0m   [0;1mSELECT * FROM "donors" WHERE ("donors"."id" = 1) [0m
+  [4;35;1mCountry Load (0.3ms)[0m   [0mSELECT * FROM "countries" WHERE ("countries"."id" = 1) [0m
+  [4;36;1mQuestionType Load (0.2ms)[0m   [0;1mSELECT * FROM "question_types" WHERE ("question_types"."id" = 1) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "activities" WHERE ("activities".response_id = 1) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "question_types" [0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT count(*) AS count_all FROM "users" WHERE (last_request_at > '2011-03-16 00:59:52') [0m
+  [4;36;1mUser Load (0.5ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+  [4;35;1mUser Update (0.7ms)[0m   [0mUPDATE "users" SET "updated_at" = '2011-03-16 01:09:52', "perishable_token" = 'drzYcxAhIk2CHcN4GyZ', "last_request_at" = '2011-03-16 01:09:52' WHERE "id" = 1[0m
+Rendered _navigation (115.3ms)
+Completed in 259ms (View: 224, DB: 4) | 200 OK [http://localhost/responses]
+
+
+Processing ActivitiesController#index (for 127.0.0.1 at 2011-03-16 01:09:59) [GET]
+  Parameters: {"action"=>"index", "response_id"=>"1", "controller"=>"activities"}
+  [4;36;1mResponse Load (0.3ms)[0m   [0;1mSELECT * FROM "responses" WHERE ("responses"."id" = 1) [0m
+  [4;35;1mQuestion Load (0.5ms)[0m   [0mSELECT * FROM "questions" [0m
+Rendering template within layouts/application
+Rendering activities/index
+  [4;36;1mActivity Load (0.5ms)[0m   [0;1mSELECT * FROM "activities" WHERE ("activities".response_id = 1) [0m
+  [4;35;1mQuestion Load (0.3ms)[0m   [0mSELECT * FROM "questions" WHERE ("questions"."id" = 1) [0m
+  [4;36;1mQuestion Load (0.3ms)[0m   [0;1mSELECT * FROM "questions" WHERE ("questions"."id" = 2) [0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT count(*) AS count_all FROM "users" WHERE (last_request_at > '2011-03-16 00:59:59') [0m
+  [4;36;1mUser Load (0.5ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+  [4;35;1mUser Update (0.6ms)[0m   [0mUPDATE "users" SET "updated_at" = '2011-03-16 01:09:59', "perishable_token" = 'ROELDckRVabYNY4qO0p2', "last_request_at" = '2011-03-16 01:09:59' WHERE "id" = 1[0m
+Rendered _navigation (140.1ms)
+Completed in 180ms (View: 161, DB: 3) | 200 OK [http://localhost/responses/1/activities]
+
+
+Processing ResponsesController#index (for 127.0.0.1 at 2011-03-16 01:11:38) [GET]
+  Parameters: {"action"=>"index", "controller"=>"responses"}
+  [4;36;1mResponse Load (0.8ms)[0m   [0;1mSELECT * FROM "responses" [0m
+Rendering template within layouts/application
+Rendering responses/index
+  [4;35;1mUser Load (0.5ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mDonor Load (0.3ms)[0m   [0;1mSELECT * FROM "donors" WHERE ("donors"."id" = 1) [0m
+  [4;35;1mCountry Load (0.3ms)[0m   [0mSELECT * FROM "countries" WHERE ("countries"."id" = 1) [0m
+  [4;36;1mQuestionType Load (0.2ms)[0m   [0;1mSELECT * FROM "question_types" WHERE ("question_types"."id" = 1) [0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT count(*) AS count_all FROM "activities" WHERE ("activities".response_id = 1) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "question_types" [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "users" WHERE (last_request_at > '2011-03-16 01:01:39') [0m
+  [4;36;1mUser Load (0.5ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = '1') LIMIT 1[0m
+  [4;35;1mUser Update (0.6ms)[0m   [0mUPDATE "users" SET "updated_at" = '2011-03-16 01:11:39', "perishable_token" = 'Oi3o6CxDYGRnSOIxmdK', "last_request_at" = '2011-03-16 01:11:39' WHERE "id" = 1[0m
+Rendered _navigation (130.6ms)
+Completed in 183ms (View: 172, DB: 4) | 200 OK [http://localhost/responses]
