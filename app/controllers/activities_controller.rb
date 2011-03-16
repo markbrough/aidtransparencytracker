@@ -8,6 +8,7 @@ class ActivitiesController < ApplicationController
   # GET /activities
   # GET /activities.xml
   def index
+  @questions = Question.find(:all)
   @activities = @response.activities
   # was @activities = Activity.all
 
@@ -32,6 +33,7 @@ class ActivitiesController < ApplicationController
   # GET /activities/new
   # GET /activities/new.xml
   def new
+    @questions = Question.find(:all)
     @activity = @response.activities.build
     # was @activity = Activity.new
 
@@ -43,6 +45,7 @@ class ActivitiesController < ApplicationController
 
   # GET /activities/1/edit
   def edit
+  @questions = Question.find(:all)
     @activity = @response.activities.find(params[:id])
     # was @activity = Activity.find(params[:id])
   end
@@ -50,20 +53,39 @@ class ActivitiesController < ApplicationController
   # POST /activities
   # POST /activities.xml
   def create
-    @activity = @response.activities.build(params[:activity])
-    # was @activity = Activity.new(params[:activity])
+	# do this for each question
+	@questions = Question.find(:all)
+		@questions.each do |question|
+#		@questionid = question.id
 
-    respond_to do |format|
-      if @activity.save
-        flash[:notice] = 'Activity was successfully created.'
-        format.html { redirect_to([@response, @activity]) }
-              # was redirect_to(@activity)
-        format.xml  { render :xml => @activity, :status => :created, :location => @activity }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @activity.errors, :status => :unprocessable_entity }
-      end
-    end
+		#    @thisactivity = []
+		#    @thisactivity << params[:activity]
+	        #    @thisactivity << params["#{question.id}"]
+
+		    @activity = @response.activities.build(params["#{question.id}"])
+
+		    # was @activity = Activity.new(params[:activity])
+
+		    
+		      if @activity.save
+			@awesome = "yes"
+		      end
+		    
+		    end
+		     respond_to do |format|
+		      if @awesome == "yes"
+			flash[:notice] = 'Activity was successfully created.'
+			format.html { redirect_to(response_activities_path(@response)) }
+
+#			format.html { redirect_to([@response, @activity]) }
+			      # was redirect_to(@activity)
+			format.xml  { render :xml => @activity, :status => :created, :location => @activity }
+		      else
+			format.html { render :action => "new" }
+			format.xml  { render :xml => @activity.errors, :status => :unprocessable_entity }
+		      end
+		end
+
   end
 
   # PUT /activities/1

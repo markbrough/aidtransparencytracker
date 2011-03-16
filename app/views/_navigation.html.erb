@@ -1,4 +1,9 @@
 <p>
+<%= link_to "Responses", responses_url %> | 
+<%= link_to "Questions", questions_url %> | 
+<%= link_to "Countries", countries_url %> | 
+<%= link_to "Donors", donors_url %> | 
+<%= link_to "Users", users_url %> |
 <%= pluralize User.logged_in.count, "user" %> currently logged in | <% if !current_user %>
   <%= link_to "Register", new_account_path %> |
   <%= link_to "Log In", new_user_session_path %> |
@@ -6,12 +11,5 @@
   <%= link_to "My Account", account_path %> |
   <%= link_to "Logout", user_session_path, :method => :delete, :confirm => "Are you sure you want to logout?" %>
 <% end %>
-</p>
-<p>
-<%= link_to "Responses", responses_url %> | 
-<%= link_to "Questions", questions_url %> | 
-<%= link_to "Countries", countries_url %> | 
-<%= link_to "Donors", donors_url %> | 
-<%= link_to "Users", users_url %>
 </p>
 <hr />

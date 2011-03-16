@@ -1,6 +1,7 @@
 <p>
   <b>Question:</b>
-  <%=h @activity.question.question_long %>
+  <% @thisquestion = Question.find(@activity.question_id) %>
+<%=h @thisquestion.question_long %>
 </p>
 
 <p>

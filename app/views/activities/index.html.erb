@@ -13,7 +13,9 @@
 
 <% @activities.each do |activity| %>
   <tr>
-    <td><%=h activity.question_id %></td>
+
+<% @this_question_id= Question.find(activity.question_id)%>
+    <td><%=h @this_question_id.id.to_s + ". " + @this_question_id.question_short %></td>
     <td><%=h activity.published %></td>
     <td><%=h activity.system %></td>
     <td><%=h activity.evidence %></td>
