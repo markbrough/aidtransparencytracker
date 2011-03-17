@@ -1,11 +1,11 @@
 h1 {
 	color:#365E93;
 }
-#response_bottom_buttons ul {
+#bottom_buttons ul {
 	margin: 0;
 	padding: 0;
 }
-#response_bottom_buttons ul li {
+#bottom_buttons ul li {
 	margin:0;
 	padding:4px;
 	list-style-type:none;
@@ -13,11 +13,11 @@ h1 {
 	float:left;
 	font-size:18px;
 }
-#response_bottom_buttons ul li a {
+#bottom_buttons ul li a {
 	color:#ffffff;
 	text-decoration:none;
 }
-#response_bottom_buttons ul li a:hover {
+#bottom_buttons ul li a:hover {
 	text-decoration:underline;
 	background-color:#365E93;
 
