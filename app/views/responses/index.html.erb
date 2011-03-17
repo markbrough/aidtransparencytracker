@@ -1,9 +1,7 @@
-<h1>Current responses</h1>
-
 <% 
 # if this user is an administrator, then display all responses
 if current_user.role == '1' %>
-
+<h1>ALl current responses</h1>
 	<table>
 	  <tr>
 	    <th>User</th>
@@ -50,7 +48,7 @@ if current_user.role == '1' %>
 
 	<br />
 <% else %>
-
+<h1>Your current responses</h1>
 	<table>
 	  <tr>
 	    <th>User</th>

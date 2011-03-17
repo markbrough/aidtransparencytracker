@@ -1,4 +1,5 @@
 class ResponsesController < ApplicationController
+ before_filter :require_user
   # GET /responses
   # GET /responses.xml
   def index

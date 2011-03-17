@@ -18,7 +18,6 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :responses, :has_many => [ :activities, :data_countries ]
 
-  map.logout "logout", :controller => "user_sessions", :action => "destroy"
 
   # The priority is based upon order of creation: first created -> highest priority.
 
