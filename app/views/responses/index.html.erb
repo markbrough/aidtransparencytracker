@@ -59,6 +59,10 @@ if current_user.role == '1' %>
 	<br />
 <% else %>
 <h1>Your current responses</h1>
+<%
+# How far along is this user?
+%>
+	<%= @user_activities_status %>
 	<% if @responses_user.count > 0 %>
 
 <%	# show all organisation-level responses
