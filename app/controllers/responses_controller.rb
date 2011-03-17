@@ -8,20 +8,20 @@ class ResponsesController < ApplicationController
     @responses_user = Response.find(:all, :conditions => { :user_id => current_user.id } ) 
 
 #how many questions has this user answered?
-    @user_data_organisations = Response.find(:all, :conditions => { :response_type => 3 })
-    @user_data_countries = Response.find(:all, :conditions => { :response_type => 2 })
-    @user_activities = Response.find(:all, :conditions => { :response_type => 1 })
-
+#    @user_data_organisations = Response.find(:all, :conditions => { :response_type => 3 })
+ #   @user_data_countries = Response.find(:all, :conditions => { :response_type => 2 })
+  #  @user_activities = Response.find(:all, :conditions => { :response_type => 1 })
+#
     @user_activities_status = ""
-    if (@user_data_organisations)
-	    @user_activities_status = "Organisations"
-    end
-    if (@user_data_countries.count == 0)
-	    @user_activities_status = "Countries"
-    end
-    if (@user_activities.count == 0)
-	    @user_activities_status = "Activities"
-    end
+ #   if (@user_data_organisations)
+#	    @user_activities_status = "Organisations"
+ #   end
+  #  if (@user_data_countries.count == 0)
+#	    @user_activities_status = "Countries"
+ #   end
+  #  if (@user_activities.count == 0)
+#	    @user_activities_status = "Activities"
+ #   end
 	
 
     @responses_donors = Response.find(:all, :group=>"donor_id")
