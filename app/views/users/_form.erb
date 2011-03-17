@@ -5,7 +5,8 @@
 <%= form.label :organisation_name %><br />
 <%= form.text_field :organisation_name %><br />
 <%= form.label :country_id %><br />
-<%= form.text_field :country_id %><br />
+<%= form.select :country_id, Country.find(:all , :order => "id") . collect { |s|#
+	[(s.name), s.id]} %><br />
 <%= form.label :role %><br />
 <%= form.text_field :role %><br />
 <br />
