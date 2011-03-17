@@ -8,6 +8,7 @@ class DataCountriesController < ApplicationController
   # GET /data_countries
   # GET /data_countries.xml
   def index
+    @questions = Question.find(:all, :order => :id, :conditions => { :question_type => 2 } )
   @data_countries = @response.data_countries
 # was    @data_countries = DataCountry.all
 
@@ -32,7 +33,7 @@ class DataCountriesController < ApplicationController
   # GET /data_countries/new
   # GET /data_countries/new.xml
   def new
-    @questions = Question.find(:all, :order => :id, :conditions => { :question_type => 1 } )
+    @questions = Question.find(:all, :order => :id, :conditions => { :question_type => 2 } )
 @data_country = @response.data_countries.build
 # was    @data_country = DataCountry.new
 
@@ -44,17 +45,14 @@ class DataCountriesController < ApplicationController
 
   # GET /data_countries/1/edit
   def edit
+    @questions = Question.find(:all, :order => :id, :conditions => { :question_type => 2 } )
 	@data_countries = @response.data_countries.find(params[:id])
 # was    @data_country = DataCountry.find(params[:id])
   end
 
   # POST /data_countries
-  # POST /data_countries.xmlprivate
-#get_response converts the response_id given by the routing
-# into a @response object, for use her and in the view.
-  def get_response
-    @response = Response.find(params[:response_id])
-  end
+  # POST /data_countries.xml
+
   def create
 @data_country = @response.data_countries.build(params[:data_country])
 #    @data_country = DataCountry.new(params[:data_country])
