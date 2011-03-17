@@ -32616,3 +32616,29 @@ Rendered data_organisations/_form (13.3ms)
   [4;35;1mUser Update (0.6ms)[0m   [0mUPDATE "users" SET "updated_at" = '2011-03-17 19:41:31', "perishable_token" = 'Dc0R51fCB0yrUjMghTP8', "last_request_at" = '2011-03-17 19:41:31' WHERE "id" = 2[0m
 Rendered _navigation (126.0ms)
 Completed in 163ms (View: 141, DB: 2) | 200 OK [http://localhost/responses/7/data_organisations/new]
+
+
+Processing DataCountriesController#index (for 127.0.0.1 at 2011-03-17 19:47:08) [GET]
+  Parameters: {"action"=>"index", "response_id"=>"5", "controller"=>"data_countries"}
+  [4;36;1mResponse Load (0.3ms)[0m   [0;1mSELECT * FROM "responses" WHERE ("responses"."id" = 5) [0m
+  [4;35;1mQuestion Load (0.3ms)[0m   [0mSELECT * FROM "questions" WHERE ("questions"."question_type" = 2) ORDER BY id[0m
+Rendering template within layouts/application
+Rendering data_countries/index
+  [4;36;1mDataCountry Load (0.2ms)[0m   [0;1mSELECT * FROM "data_countries" WHERE ("data_countries".response_id = 5) [0m
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."persistence_token" = '86032c418c7f0c22be36d9180ffa4de5ab74ee4bdf7cf6eb67917eb0a2907c05d4f1e7c44af23e01ed1b596129556430eebb1e91b66a3b18dd78c1cb57b12340') LIMIT 1[0m
+  [4;36;1mUser Update (0.6ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2011-03-17 19:47:08', "perishable_token" = 'DBagcPl6XtooKbzFCpz', "last_request_at" = '2011-03-17 19:47:08' WHERE "id" = 2[0m
+Rendered _navigation (205.8ms)
+Completed in 226ms (View: 209, DB: 2) | 200 OK [http://localhost/responses/5/data_countries]
+
+
+Processing DataCountriesController#new (for 127.0.0.1 at 2011-03-17 19:47:09) [GET]
+  Parameters: {"action"=>"new", "response_id"=>"5", "controller"=>"data_countries"}
+  [4;35;1mResponse Load (0.3ms)[0m   [0mSELECT * FROM "responses" WHERE ("responses"."id" = 5) [0m
+  [4;36;1mQuestion Load (0.4ms)[0m   [0;1mSELECT * FROM "questions" WHERE ("questions"."question_type" = 2) ORDER BY id[0m
+Rendering template within layouts/application
+Rendering data_countries/new
+Rendered data_countries/_form (14.3ms)
+  [4;35;1mUser Load (0.5ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."persistence_token" = '86032c418c7f0c22be36d9180ffa4de5ab74ee4bdf7cf6eb67917eb0a2907c05d4f1e7c44af23e01ed1b596129556430eebb1e91b66a3b18dd78c1cb57b12340') LIMIT 1[0m
+  [4;36;1mUser Update (0.6ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2011-03-17 19:47:09', "perishable_token" = 'CUyWmWDOJMegv7ybrlAO', "last_request_at" = '2011-03-17 19:47:09' WHERE "id" = 2[0m
+Rendered _navigation (135.8ms)
+Completed in 181ms (View: 159, DB: 2) | 200 OK [http://localhost/responses/5/data_countries/new]
