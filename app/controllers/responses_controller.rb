@@ -9,7 +9,7 @@ class ResponsesController < ApplicationController
 
 
 
-#    @responses_donors = Response.find(:all, :group=>"donor_id")
+    @responses_donors = Response.find(:all, :group=>"donor_id")
 
 
     respond_to do |format|
