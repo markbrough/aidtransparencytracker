@@ -18,9 +18,9 @@
     <td><%=h data_organisation.comments %></td>
     <td><%=h data_organisation.response_id %></td>
     <td><%=h data_organisation.entry_date %></td>
-    <td><%= link_to 'Show', data_organisation %></td>
-    <td><%= link_to 'Edit', edit_data_organisation_path(data_organisation) %></td>
-    <td><%= link_to 'Destroy', data_organisation, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Show', [@response, data_organisation] %></td>
+    <td><%= link_to 'Edit', edit_data_organisation_path(@response, data_organisation) %></td>
+    <td><%= link_to 'Destroy', [@response, data_organisation], :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
