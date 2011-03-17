@@ -10,7 +10,8 @@
 <% @donors.each do |donor| %>
   <tr>
     <td><%=h donor.name %></td>
-    <td><%=h donor.country_id %></td>
+<% @thiscountryid= Country.find(donor.country_id)%>
+    <td><%=h @thiscountryid.name %></td>
     <td><%=h donor.description %></td>
     <td><%= link_to 'Show', donor %></td>
     <td><%= link_to 'Edit', edit_donor_path(donor) %></td>
