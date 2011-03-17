@@ -3,7 +3,7 @@
 <% @question_types.each do |question_type| %>
 <h2><%=h question_type.name %></h2>
 	<% @questions = Question.find(:all, :order => :id, :conditions => { :question_type => question_type.id } ) 
-	if (@questions.count > 0)
+	if @questions.count > 0
 	%>
 
 		<table>
