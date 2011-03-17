@@ -8,9 +8,9 @@ class ResponsesController < ApplicationController
     @responses_user = Response.find(:all, :conditions => { :user_id => current_user.id } ) 
 
 #how many questions has this user answered?
-    @user_data_organisations = Response.find(:all, :conditions => { :response_type => 3 })
-    @user_data_countries = Response.find(:all, :conditions => { :response_type => 2 })
-    @user_activities = Response.find(:all, :conditions => { :response_type => 1 })
+#    @user_data_organisations = Response.find(:all, :conditions => { :response_type => 3 })
+#   @user_data_countries = Response.find(:all, :conditions => { :response_type => 2 })
+#    @user_activities = Response.find(:all, :conditions => { :response_type => 1 })
 
     @user_activities_status = ""
     if (@user_data_organisations.count == 0)
