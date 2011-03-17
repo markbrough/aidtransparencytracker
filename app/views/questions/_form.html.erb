@@ -6,11 +6,11 @@
 	[(s.name), s.id]} %>    
   </p>
   <p><b>Question:</b><br />
-    <%= f.text_area :question_long %>
+    <%= f.text_area :question_long, :rows => 2 %>
   </p>
   <p><b>Short version of the question:</b><br />
 <i>Please provide a one or two word version of the question</i><br />
-    <%= f.text_field :question_short, :rows => 2 %>
+    <%= f.text_field :question_short %>
   </p>
   <p><b>Description of the question:</b><br />
 <i>You can use this space to explain any potentially confusing terms in this question.</i>
