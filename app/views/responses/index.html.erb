@@ -85,11 +85,11 @@ if current_user.role == '1' %>
 		<!--    <td><%=h @this_percentage_complete_real %>%</td> -->
 		    <td><%=h response.status %></td>
 		    <td><%= link_to 'Show', response %></td>
-		<% if response.response_type == 1 %>
+		<% if response.response_type == "1" %>
 		    <td><%= link_to 'Activity Questions', response_activities_path(response) %></td>
-		<% elsif response.response_type == 2 %>
+		<% elsif response.response_type == "2" %>
 		    <td><%= link_to 'Country Questions', response_data_countries_path(response) %></td>
-		<% elsif response.response_type == 3 %>
+		<% elsif response.response_type == "3" %>
 		    <td><%= link_to 'Organisation Questions', response_data_organisations_path(response) %></td>
 		<% end %>
 		    <td><%= link_to 'Edit', edit_response_path(response) %></td>
