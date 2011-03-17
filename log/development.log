@@ -31907,3 +31907,16 @@ Rendering template within layouts/application
 Rendering responses/index
 Rendered _navigation (2.7ms)
 Completed in 201ms (View: 5, DB: 2) | 200 OK [http://localhost/responses]
+
+
+Processing ResponsesController#index (for 127.0.0.1 at 2011-03-17 18:51:23) [GET]
+  Parameters: {"action"=>"index", "controller"=>"responses"}
+  [4;35;1mUser Load (0.5ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."persistence_token" = '86032c418c7f0c22be36d9180ffa4de5ab74ee4bdf7cf6eb67917eb0a2907c05d4f1e7c44af23e01ed1b596129556430eebb1e91b66a3b18dd78c1cb57b12340') LIMIT 1[0m
+  [4;36;1mUser Update (0.6ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2011-03-17 18:51:23', "perishable_token" = 'SeF38i4DeiZE7qGj9zvM', "last_request_at" = '2011-03-17 18:51:23' WHERE "id" = 2[0m
+  [4;35;1mResponse Load (0.9ms)[0m   [0mSELECT * FROM "responses" [0m
+  [4;36;1mResponse Load (0.1ms)[0m   [0;1mSELECT * FROM "responses" WHERE ("responses"."user_id" = 2) [0m
+  [4;35;1mResponse Load (0.4ms)[0m   [0mSELECT * FROM "responses" GROUP BY donor_id[0m
+Rendering template within layouts/application
+Rendering responses/index
+Rendered _navigation (3.1ms)
+Completed in 130ms (View: 5, DB: 3) | 200 OK [http://localhost/responses]

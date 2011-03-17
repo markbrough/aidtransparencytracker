@@ -2,19 +2,7 @@
 # if this user is an administrator, then display all responses
 if current_user.role == '1' %>
 	<h1>All current responses</h1>
-<!--
-	<% @responses_donors.each do |donors| %>
 
-		<% @thisdonorid= Donor.find(donors.donor_id)%>
-		<h2><%=h @thisdonorid.name %></h2>
-		<% @responses_countries = Response.find(:all, :group=>"recipient_id", :conditions => { :donor_id => donors.donor_id } )
-		@responses_countries.each do |countries|
-			@thiscountryid = Country.find(countries.recipient_id) %>
-		<%= @thiscountryid.name %>
-		<% end	%>
-		
-	<% end %>
--->
 	<table>
 	  <tr>
 	    <th>User</th>
