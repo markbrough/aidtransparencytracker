@@ -14,9 +14,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :donors
 
-  map.resources :data_organisations
-
-  map.resources :responses, :has_many => [ :activities, :data_countries ]
+  map.resources :responses, :has_many => [ :activities, :data_countries, :data_organisations ]
 
 
   # The priority is based upon order of creation: first created -> highest priority.

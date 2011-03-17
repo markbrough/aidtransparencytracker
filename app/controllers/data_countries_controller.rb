@@ -32,6 +32,7 @@ class DataCountriesController < ApplicationController
   # GET /data_countries/new
   # GET /data_countries/new.xml
   def new
+    @questions = Question.find(:all, :order => :id, :conditions => { :question_type => 1 } )
 @data_country = @response.data_countries.build
 # was    @data_country = DataCountry.new
 

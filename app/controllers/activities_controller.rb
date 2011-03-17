@@ -33,7 +33,7 @@ class ActivitiesController < ApplicationController
   # GET /activities/new
   # GET /activities/new.xml
   def new
-    @questions = Question.find(:all, :order => :id)
+    @questions = Question.find(:all, :order => :id, :conditions => { :question_type => 1 } )
     @activity = @response.activities.build
     # was @activity = Activity.new
 
@@ -45,7 +45,7 @@ class ActivitiesController < ApplicationController
 
   # GET /activities/1/edit
   def edit
-  @questions = Question.find(:all, :order => :id)
+    @questions = Question.find(:all, :order => :id, :conditions => { :question_type => 1 } )
     @activity = @response.activities.find(params[:id])
     # was @activity = Activity.find(params[:id])
   end
@@ -54,13 +54,8 @@ class ActivitiesController < ApplicationController
   # POST /activities.xml
   def create
 	# do this for each question
-	@questions = Question.find(:all)
+	@questions = Question.find(:all, :conditions => { :question_type => 1 } )
 		@questions.each do |question|
-#		@questionid = question.id
-
-		#    @thisactivity = []
-		#    @thisactivity << params[:activity]
-	        #    @thisactivity << params["#{question.id}"]
 
 		    @activity = @response.activities.build(params["#{question.id}"])
 
@@ -76,9 +71,6 @@ class ActivitiesController < ApplicationController
 		      if @awesome == "yes"
 			flash[:notice] = 'Activity was successfully created.'
 			format.html { redirect_to(response_activities_path(@response)) }
-
-#			format.html { redirect_to([@response, @activity]) }
-			      # was redirect_to(@activity)
 			format.xml  { render :xml => @activity, :status => :created, :location => @activity }
 		      else
 			format.html { render :action => "new" }
@@ -116,7 +108,7 @@ class ActivitiesController < ApplicationController
 
     respond_to do |format|
 # need to check the type of response (activity/country/organisation) and redirect accordingly
-      format.html { redirect_to(new_response_activity_path(@response)) }
+      format.html { redirect_to(response_activity_path(@response)) }
 	# was redirect_to(activities_url)
       format.xml  { head :ok }
     end
