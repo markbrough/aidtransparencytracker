@@ -49,51 +49,53 @@ if current_user.role == '1' %>
 	<br />
 <% else %>
 <h1>Your current responses</h1>
-	<table>
-	  <tr>
-	    <th>User</th>
-	    <th>Donor</th>
-	    <th>Recipient Country</th>
-	    <th>Response type</th>
-	    <th>Entry date</th>
-	    <th>Description</th>
-	    <th>Completed</th>
-	    <th>Status</th>
-	  </tr>
+	<% if @responses_user.count > 0 %>
+		<table>
+		  <tr>
+		    <th>User</th>
+		    <th>Donor</th>
+		    <th>Recipient Country</th>
+		    <th>Response type</th>
+		    <th>Entry date</th>
+		    <th>Description</th>
+		    <th>Completed</th>
+		    <th>Status</th>
+		  </tr>
 
-	<% @responses_user.each do |response| %>
-	  <tr>
-	<% @thisusername = User.find(response.user_id)%>
-	    <td><%=h link_to @thisusername.login, user_path(@thisusername.id) %></td>
+		<% @responses_user.each do |response| %>
+		  <tr>
+		<% @thisusername = User.find(response.user_id)%>
+		    <td><%=h link_to @thisusername.login, user_path(@thisusername.id) %></td>
 
-	<% @thisdonorid= Donor.find(response.donor_id)%>
-	    <td><%=h @thisdonorid.name %></td>
+		<% @thisdonorid= Donor.find(response.donor_id)%>
+		    <td><%=h @thisdonorid.name %></td>
 
-	<% @thisrecipientid= Country.find(response.recipient_id)%>
-	    <td><%=h @thisrecipientid.name %></td>
+		<% @thisrecipientid= Country.find(response.recipient_id)%>
+		    <td><%=h @thisrecipientid.name %></td>
 
-	<% @thisquestiontype= QuestionType.find(response.response_type)%>
-	    <td><%=h @thisquestiontype.name %></td>
-	    <td><%=h response.entry_date %></td>
-	    <td><%=h response.description %></td>
+		<% @thisquestiontype= QuestionType.find(response.response_type)%>
+		    <td><%=h @thisquestiontype.name %></td>
+		    <td><%=h response.entry_date %></td>
+		    <td><%=h response.description %></td>
 
-	<% 
-	#@this_percentage_complete_real = ((response.activities.count.to_f) / (QuestionType.count.to_f))*100
-	%>
-	<td> </td>
-	<!--    <td><%=h @this_percentage_complete_real %>%</td> -->
-	    <td><%=h response.status %></td>
-	    <td><%= link_to 'Show', response %></td>
-	<% if response.response_type == 1 %>
-	    <td><%= link_to 'Activity Questions', response_activities_path(response) %></td>
+		<% 
+		#@this_percentage_complete_real = ((response.activities.count.to_f) / (QuestionType.count.to_f))*100
+		%>
+		<td> </td>
+		<!--    <td><%=h @this_percentage_complete_real %>%</td> -->
+		    <td><%=h response.status %></td>
+		    <td><%= link_to 'Show', response %></td>
+		<% if response.response_type == 1 %>
+		    <td><%= link_to 'Activity Questions', response_activities_path(response) %></td>
+		<% end %>
+		    <td><%= link_to 'Edit', edit_response_path(response) %></td>
+		    <td><%= link_to 'Destroy', response, :confirm => 'Are you sure?', :method => :delete %></td>
+		  </tr>
+		<% end %>
+		</table>
+
+		<br />
 	<% end %>
-	    <td><%= link_to 'Edit', edit_response_path(response) %></td>
-	    <td><%= link_to 'Destroy', response, :confirm => 'Are you sure?', :method => :delete %></td>
-	  </tr>
-	<% end %>
-	</table>
-
-	<br />
 <% end %>
 
 <%= link_to 'New response', new_response_path %>
