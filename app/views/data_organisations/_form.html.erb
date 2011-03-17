@@ -1,31 +1,37 @@
 <% form_for([@response, @data_organisation]) do |f| %>
   <%= f.error_messages %>
 
+<% @questions.each do |tq| %>
+    <h2><%= tq.id.to_s + ". " + tq.question_long %></h2>
+<% if tq.example != "" %>
+<h3><i>e.g. <%= tq.example %></i></h3>
+<% end %>
+<%= hidden_field(tq.id, :question_id, :value => tq.id) %>
+
   <p>
-    <%= f.label :question_id %><br />
-    <%= f.text_field :question_id %>
+    <%= select(tq.id, :published, [ ['1) Yes, this donor publishes this information systematically', '1'],
+				['2) Yes, this donor publishes this information sporadically on an ad hoc basis', '2'],
+				['3) No, but this donor does collect this data', '3'],
+				['4) No, and this donor doesn\'t collect this data either', '4'],
+				['5) Don\'t know', '5']
+					]) %>
   </p>
-  <p>
-    <%= f.label :published %><br />
-    <%= f.text_field :published %>
+  <p>Do you know which system it's stored in?<br />
+    <%= text_field(tq.id, :system) %>
   </p>
   <p>
     <%= f.label :evidence %><br />
-    <%= f.text_area :evidence %>
+    <%= text_area(tq.id, :evidence, :rows => 2) %>
   </p>
   <p>
     <%= f.label :comments %><br />
-    <%= f.text_area :comments %>
-  </p>
-  <p>
-    <%= f.label :response_id %><br />
-    <%= f.text_field :response_id %>
+    <%= text_area(tq.id, :comments, :rows => 4) %>
   </p>
   <p>
     <%= f.label :entry_date %><br />
-    <%= f.date_select :entry_date %>
+    <%= date_select(tq.id, :entry_date) %>
   </p>
-  <p>
-    <%= f.submit 'Create' %>
-  </p>
+<% end %>
+
+    <%= submit_tag 'Submit' %>
 <% end %>

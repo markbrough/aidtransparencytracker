@@ -6,6 +6,7 @@ class DataOrganisationsController < ApplicationController
   # GET /data_organisations.xml
   def index
 
+  @questions = Question.find(:all, :order => :id, :conditions => { :question_type => 3 } )
   @data_organisations = @response.data_organisations
     # was @data_organisations = DataOrganisation.all
 
