@@ -53,8 +53,17 @@ class ResponsesController < ApplicationController
     respond_to do |format|
       if @response.save
         flash[:notice] = 'Response was successfully created.'
-        format.html { redirect_to(new_response_activity_path(@response)) }
-        format.xml  { render :xml => @response, :status => :created, :location => @response }
+
+	if @response.response_type == 1
+		format.html { redirect_to(new_response_activity_path(@response)) }
+		format.xml  { render :xml => @response, :status => :created, :location => @response }
+	elsif @response.response_type == 2
+		format.html { redirect_to(new_response_data_country_path(@response)) }
+		format.xml  { render :xml => @response, :status => :created, :location => @response }	
+	elsif @response.response_type == 3
+		format.html { redirect_to(new_response_data_organisation_path(@response)) }
+		format.xml  { render :xml => @response, :status => :created, :location => @response }
+	end
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @response.errors, :status => :unprocessable_entity }
