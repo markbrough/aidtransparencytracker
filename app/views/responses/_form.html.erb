@@ -6,7 +6,7 @@
   <p>
     <b>Which donor are you answering questions about?</b><br />
 
-<%= f.select :donor_id, Donor.find(:all , :order => "id") . collect { |s|#
+<%= f.select :donor_id, Donor.find(:all, :order => "name") . collect { |s|#
 	[(Country.find(s.country_id.to_s).name + " > " + s.name), s.id]} %>    
 
   </p>

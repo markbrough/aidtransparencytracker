@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
   def index
 
 
-    @question_types = QuestionType.find(:all)
+    @question_types = QuestionType.find(:all, :order => "id DESC")
  #   @questions = Question.find(:all, :conditions => { :question_type => @question_types.id } )
 #    @questions = Question.all
 

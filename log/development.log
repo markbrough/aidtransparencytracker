@@ -32963,3 +32963,45 @@ Rendering questions/index
   [4;35;1mUser Update (0.6ms)[0m   [0mUPDATE "users" SET "updated_at" = '2011-03-17 20:03:52', "perishable_token" = 'J5r4rgANLraKpsAOlhhO', "last_request_at" = '2011-03-17 20:03:52' WHERE "id" = 2[0m
 Rendered _navigation (145.1ms)
 Completed in 178ms (View: 170, DB: 3) | 200 OK [http://localhost/questions]
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2011-03-17 20:05:49) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestionType Load (0.9ms)[0m   [0;1mSELECT * FROM "question_types" [0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mQuestion Load (0.5ms)[0m   [0mSELECT * FROM "questions" WHERE ("questions"."question_type" = 1) ORDER BY id DESC[0m
+  [4;36;1mQuestion Load (0.4ms)[0m   [0;1mSELECT * FROM "questions" WHERE ("questions"."question_type" = 2) ORDER BY id DESC[0m
+  [4;35;1mQuestion Load (0.4ms)[0m   [0mSELECT * FROM "questions" WHERE ("questions"."question_type" = 3) ORDER BY id DESC[0m
+  [4;36;1mUser Load (0.5ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."persistence_token" = '86032c418c7f0c22be36d9180ffa4de5ab74ee4bdf7cf6eb67917eb0a2907c05d4f1e7c44af23e01ed1b596129556430eebb1e91b66a3b18dd78c1cb57b12340') LIMIT 1[0m
+  [4;35;1mUser Update (0.6ms)[0m   [0mUPDATE "users" SET "updated_at" = '2011-03-17 20:05:49', "perishable_token" = 'PTQqwgS5emyzUTsngOQ8', "last_request_at" = '2011-03-17 20:05:49' WHERE "id" = 2[0m
+Rendered _navigation (132.8ms)
+Completed in 176ms (View: 167, DB: 3) | 200 OK [http://localhost/questions]
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2011-03-17 20:06:02) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestionType Load (0.8ms)[0m   [0;1mSELECT * FROM "question_types" [0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mQuestion Load (0.5ms)[0m   [0mSELECT * FROM "questions" WHERE ("questions"."question_type" = 1) ORDER BY id[0m
+  [4;36;1mQuestion Load (0.3ms)[0m   [0;1mSELECT * FROM "questions" WHERE ("questions"."question_type" = 2) ORDER BY id[0m
+  [4;35;1mQuestion Load (0.3ms)[0m   [0mSELECT * FROM "questions" WHERE ("questions"."question_type" = 3) ORDER BY id[0m
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."persistence_token" = '86032c418c7f0c22be36d9180ffa4de5ab74ee4bdf7cf6eb67917eb0a2907c05d4f1e7c44af23e01ed1b596129556430eebb1e91b66a3b18dd78c1cb57b12340') LIMIT 1[0m
+  [4;35;1mUser Update (0.6ms)[0m   [0mUPDATE "users" SET "updated_at" = '2011-03-17 20:06:02', "perishable_token" = 'urBaRWpxbiYL5AyzFCyy', "last_request_at" = '2011-03-17 20:06:02' WHERE "id" = 2[0m
+Rendered _navigation (121.6ms)
+Completed in 159ms (View: 151, DB: 3) | 200 OK [http://localhost/questions]
+
+
+Processing QuestionsController#index (for 127.0.0.1 at 2011-03-17 20:07:07) [GET]
+  Parameters: {"action"=>"index", "controller"=>"questions"}
+  [4;36;1mQuestionType Load (0.9ms)[0m   [0;1mSELECT * FROM "question_types" ORDER BY id DESC[0m
+Rendering template within layouts/application
+Rendering questions/index
+  [4;35;1mQuestion Load (0.4ms)[0m   [0mSELECT * FROM "questions" WHERE ("questions"."question_type" = 3) ORDER BY id[0m
+  [4;36;1mQuestion Load (0.3ms)[0m   [0;1mSELECT * FROM "questions" WHERE ("questions"."question_type" = 2) ORDER BY id[0m
+  [4;35;1mQuestion Load (0.5ms)[0m   [0mSELECT * FROM "questions" WHERE ("questions"."question_type" = 1) ORDER BY id[0m
+  [4;36;1mUser Load (0.5ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."persistence_token" = '86032c418c7f0c22be36d9180ffa4de5ab74ee4bdf7cf6eb67917eb0a2907c05d4f1e7c44af23e01ed1b596129556430eebb1e91b66a3b18dd78c1cb57b12340') LIMIT 1[0m
+  [4;35;1mUser Update (0.6ms)[0m   [0mUPDATE "users" SET "updated_at" = '2011-03-17 20:07:07', "perishable_token" = 'xwHreHzZfLVTaIPvqMfi', "last_request_at" = '2011-03-17 20:07:07' WHERE "id" = 2[0m
+Rendered _navigation (136.2ms)
+Completed in 174ms (View: 165, DB: 3) | 200 OK [http://localhost/questions]
