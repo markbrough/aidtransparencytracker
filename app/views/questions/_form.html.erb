@@ -1,0 +1,28 @@
+<% form_for(@question) do |f| %>
+  <%= f.error_messages %>
+
+  <p><b>Question category:</b><br />
+<%= f.select :question_type, QuestionType.find(:all , :order => "id") . collect { |s|#
+	[(s.name), s.id]} %>    
+  </p>
+  <p><b>Long version of the question:</b><br />
+    <%= f.text_area :question_long %>
+  </p>
+  <p><b>Short version of the question:</b><br />
+<i>Please provide a one or two word version of the question</i><br />
+    <%= f.text_field :question_short %>
+  </p>
+  <p><b>Description of the question:</b><br />
+<i>You can use this space to explain any potentially confusing terms in this question.</i>
+<br />
+    <%= f.text_area :description %>
+  </p>
+  <p><b>Example of the question:</b><br />
+<i>You can use this space to give an example answer to this question.</i>
+<br />
+    <%= f.text_area :example %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>	
