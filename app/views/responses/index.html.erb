@@ -1,7 +1,20 @@
 <% 
 # if this user is an administrator, then display all responses
 if current_user.role == '1' %>
-<h1>All current responses</h1>
+	<h1>All current responses</h1>
+<!--
+	<% @responses_donors.each do |donors| %>
+
+		<% @thisdonorid= Donor.find(donors.donor_id)%>
+		<h2><%=h @thisdonorid.name %></h2>
+		<% @responses_countries = Response.find(:all, :group=>"recipient_id", :conditions => { :donor_id => donors.donor_id } )
+		@responses_countries.each do |countries|
+			@thiscountryid = Country.find(countries.recipient_id) %>
+		<%= @thiscountryid.name %>
+		<% end	%>
+		
+	<% end %>
+-->
 	<table>
 	  <tr>
 	    <th>User</th>
@@ -10,7 +23,6 @@ if current_user.role == '1' %>
 	    <th>Response type</th>
 	    <th>Entry date</th>
 	    <th>Description</th>
-	    <th>Completed</th>
 	    <th>Status</th>
 	  </tr>
 
@@ -29,12 +41,6 @@ if current_user.role == '1' %>
 	    <td><%=h @thisquestiontype.name %></td>
 	    <td><%=h response.entry_date %></td>
 	    <td><%=h response.description %></td>
-
-	<% 
-	#@this_percentage_complete_real = ((response.activities.count.to_f) / (QuestionType.count.to_f))*100
-	%>
-	<td> </td>
-	<!--    <td><%=h @this_percentage_complete_real %>%</td> -->
 	    <td><%=h response.status %></td>
 		<% if response.response_type == 1 %>
 		    <td><%= link_to 'Activity Questions', response_activities_path(response) %></td>
@@ -54,22 +60,22 @@ if current_user.role == '1' %>
 <% else %>
 <h1>Your current responses</h1>
 	<% if @responses_user.count > 0 %>
+
+	# show all organisation-level responses
+	# show all country-level responses below
+	# show all activity-level responses below
 		<table>
 		  <tr>
-		    <th>User</th>
 		    <th>Donor</th>
 		    <th>Recipient Country</th>
 		    <th>Response type</th>
 		    <th>Entry date</th>
 		    <th>Description</th>
-		    <th>Completed</th>
 		    <th>Status</th>
 		  </tr>
 
 		<% @responses_user.each do |response| %>
 		  <tr>
-		<% @thisusername = User.find(response.user_id)%>
-		    <td><%=h link_to @thisusername.login, user_path(@thisusername.id) %></td>
 
 		<% @thisdonorid= Donor.find(response.donor_id)%>
 		    <td><%=h @thisdonorid.name %></td>
@@ -81,18 +87,12 @@ if current_user.role == '1' %>
 		    <td><%=h @thisquestiontype.name %></td>
 		    <td><%=h response.entry_date %></td>
 		    <td><%=h response.description %></td>
-
-		<% 
-		#@this_percentage_complete_real = ((response.activities.count.to_f) / (QuestionType.count.to_f))*100
-		%>
-		<td> </td>
-		<!--    <td><%=h @this_percentage_complete_real %>%</td> -->
 		    <td><%=h response.status %></td>
-		<% if response.response_type == "1" %>
+		<% if response.response_type == 1 %>
 		    <td><%= link_to 'Activity Questions', response_activities_path(response) %></td>
-		<% elsif response.response_type == "2" %>
+		<% elsif response.response_type == 2 %>
 		    <td><%= link_to 'Country Questions', response_data_countries_path(response) %></td>
-		<% elsif response.response_type == "3" %>
+		<% elsif response.response_type == 3 %>
 		    <td><%= link_to 'Organisation Questions', response_data_organisations_path(response) %></td>
 		<% end %>
 		    <td><%= link_to 'Show', response %></td>

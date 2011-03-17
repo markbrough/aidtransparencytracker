@@ -7,6 +7,9 @@ class ResponsesController < ApplicationController
     @responses = Response.all
     @responses_user = Response.find(:all, :conditions => { :user_id => current_user.id } ) 
 
+    @responses_donors = Response.find(:all, :group=>"donor_id")
+
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @responses }
