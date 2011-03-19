@@ -81,8 +81,16 @@ class ResponsesController < ApplicationController
   def update
     @response = Response.find(params[:id])
 
+
+    @response_params = params[:response]
+
+    @response_params[:user_id] = current_user.id
+    # it's a CSO/user response
+    @response_params[:status] = '10'
+    @response_params[:entry_date] = Date.today
+
     respond_to do |format|
-      if @response.update_attributes(params[:response])
+      if @response.update_attributes(@response_params)
         flash[:notice] = 'Response was successfully updated.'
         format.html { redirect_to(@response) }
         format.xml  { head :ok }
