@@ -1,4 +1,5 @@
-<h1>Listing activities in Response <%=h @response.id %></h1>
+<% @thisresponse_info = Donor.find(@response.donor_id).name + " in " + Country.find(@response.recipient_id).name %>
+<h1>Activity-level questions for <%=h @thisresponse_info %></h1>
 
 <table>
   <tr>
@@ -7,21 +8,30 @@
     <th>System</th>
     <th>Evidence</th>
     <th>Comments</th>
-    <th>Response</th>
-    <th>Entry date</th>
   </tr>
-
+<% @question_number=1 %>
 <% @activities.each do |activity| %>
   <tr>
 
 <% @this_question_id= Question.find(activity.question_id)%>
-    <td><%=h @this_question_id.id.to_s + ". " + @this_question_id.question_short %></td>
-    <td><%=h activity.published %></td>
+    <td><%=h @question_number.to_s + ". " + @this_question_id.question_short %></td>
+<% @question_number+=1 %>
+<% if activity.published = 1 
+	@activity_published = 'Systematically'
+elsif activity.published = 2
+	@activity_published = 'Ad Hoc'
+elsif activity.published = 3
+	@activity_published = 'Collected only'
+elsif activity.published = 4
+	@activity_published = 'Not collected'
+elsif activity.published = 5
+	@activity_published = 'Don\'t know'
+end %>
+
+    <td><%=h @activity_published %></td>
     <td><%=h activity.system %></td>
     <td><%=h activity.evidence %></td>
     <td><%=h activity.comments %></td>
-    <td><%=h activity.response_id %></td>
-    <td><%=h activity.entry_date %></td>
     <td><%= link_to 'Show', [@response, activity] %></td>
     <td><%= link_to 'Edit', edit_response_activity_path(@response, activity) %></td>
     <td><%= link_to 'Destroy', [@response, activity], :confirm => 'Are you sure?', :method => :delete %></td>

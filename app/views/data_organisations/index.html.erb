@@ -1,4 +1,5 @@
-<h1>Listing data_organisations</h1>
+<% @thisresponse_info = Donor.find(@response.donor_id).name %>
+<h1>Organisation-level questions for <%=h @thisresponse_info %></h1>
 
 <table>
   <tr>
@@ -6,18 +7,28 @@
     <th>Published</th>
     <th>Evidence</th>
     <th>Comments</th>
-    <th>Response</th>
-    <th>Entry date</th>
   </tr>
-
+<% @question_number=1 %>
 <% @data_organisations.each do |data_organisation| %>
   <tr>
-    <td><%=h data_organisation.question_id %></td>
-    <td><%=h data_organisation.published %></td>
+<% @this_question_id= Question.find(data_organisation.question_id)%>
+    <td><%=h @question_number.to_s + ". " + @this_question_id.question_short %></td>
+<% @question_number+=1 %>
+<% if data_organisation.published = 1 
+	@data_organisation_published = 'Systematically'
+elsif data_organisation.published = 2
+	@data_organisation_published = 'Ad Hoc'
+elsif data_organisation.published = 3
+	@data_organisation_published = 'Collected only'
+elsif data_organisation.published = 4
+	@data_organisation_published = 'Not collected'
+elsif data_organisation.published = 5
+	@data_organisation_published = 'Don\'t know'
+end %>
+
+    <td><%=h @data_organisation_published %></td>
     <td><%=h data_organisation.evidence %></td>
     <td><%=h data_organisation.comments %></td>
-    <td><%=h data_organisation.response_id %></td>
-    <td><%=h data_organisation.entry_date %></td>
     <td><%= link_to 'Show', [@response, data_organisation] %></td>
     <td><%= link_to 'Edit', edit_response_data_organisation_path(@response, data_organisation) %></td>
     <td><%= link_to 'Destroy', [@response, data_organisation], :confirm => 'Are you sure?', :method => :delete %></td>

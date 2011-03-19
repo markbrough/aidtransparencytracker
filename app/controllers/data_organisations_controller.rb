@@ -59,7 +59,11 @@ class DataOrganisationsController < ApplicationController
 		@questions.each do |question|
 
 
-		    @data_organisation = @response.data_organisations.build(params["#{question.id}"])
+	    @data_organisation_params = params["#{question.id}"]
+	    @data_organisation_params[:entry_date] = Date.today
+	    @data_organisation = @response.data_organisations.build(@data_organisation_params)
+	    
+		    #@data_organisation = @response.data_organisations.build(params["#{question.id}"])
 		    # @data_organisation = DataOrganisation.new(params[:data_organisation])
 
 		      if @data_organisation.save

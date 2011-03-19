@@ -57,9 +57,11 @@ class ActivitiesController < ApplicationController
 	@questions = Question.find(:all, :conditions => { :question_type => 1 } )
 		@questions.each do |question|
 
-		    @activity_params = @response.activities.build(params["#{question.id}"])
+
+		    @activity_params = params["#{question.id}"]
 		    @activity_params[:entry_date] = Date.today
-		    @activity = Activity.new(@activity_params)
+		    @activity = @response.activities.build(@activity_params)
+
 		    # was @activity = Activity.new(params[:activity])
 
 		    

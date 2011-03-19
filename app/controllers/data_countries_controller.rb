@@ -57,10 +57,9 @@ class DataCountriesController < ApplicationController
 	# do this for each question
 	@questions = Question.find(:all, :conditions => { :question_type => 2 } )
 	@questions.each do |question|
-
-	    @data_country_params = @response.data_countries.build(params["#{question.id}"])
+	    @data_country_params = params["#{question.id}"]
 	    @data_country_params[:entry_date] = Date.today
-	    @data_country = DataCountry.new(@data_country_params)
+	    @data_country = @response.data_countries.build(@data_country_params)
 	    
 	      if @data_country.save
 		@awesome = "yes"
