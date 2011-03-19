@@ -48,7 +48,12 @@ class ResponsesController < ApplicationController
   # POST /responses
   # POST /responses.xml
   def create
-    @response = Response.new(params[:response])
+    @response_params = params[:response]
+    @response_params[:user_id] = current_user.id
+    # it's a CSO/user response
+    @response_params[:status] = '10'
+    @response_params[:entry_date] = Date.today
+    @response = Response.new(@response_params)
 
     respond_to do |format|
       if @response.save

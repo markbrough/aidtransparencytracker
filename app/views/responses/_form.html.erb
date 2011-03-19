@@ -1,8 +1,6 @@
 <% form_for(@response) do |f| %>
   <%= f.error_messages %>
 
-    <%= hidden_field(:response, :user_id, :value => current_user.id) %>
-
   <p>
     <b>Which donor are you answering questions about?</b><br />
 
@@ -21,11 +19,7 @@
 <%= f.select :response_type, QuestionType.find(:all , :order => "id DESC") . collect { |s|#
 	[(s.name), s.id]} %>    
   </p>
-<!--  <p>
-    <%= f.label :entry_date %><br />
-    <%= f.date_select :entry_date %>
-  </p>
-  <p>
+<!--    <p>
     <%= f.label :description %><br />
     <%= f.text_area :description %>
   </p>

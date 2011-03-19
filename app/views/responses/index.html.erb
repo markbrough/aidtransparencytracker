@@ -9,7 +9,7 @@ if current_user.role == '1' %>
 	    <th>Donor</th>
 	    <th>Recipient Country</th>
 	    <th>Response type</th>
-	    <th>Entry date</th>
+	    <th>Last updated</th>
 	    <th>Description</th>
 	    <th>Status</th>
 	  </tr>
@@ -27,7 +27,7 @@ if current_user.role == '1' %>
 
 	<% @thisquestiontype= QuestionType.find(response.response_type)%>
 	    <td><%=h @thisquestiontype.name %></td>
-	    <td><%=h response.entry_date %></td>
+	    <td><%=h distance_of_time_in_words(response.entry_date, Time.now) %> ago</td>
 	    <td><%=h response.description %></td>
 	    <td><%=h response.status %></td>
 		<% if response.response_type == 1 %>
@@ -58,7 +58,7 @@ if current_user.role == '1' %>
 		    <th>Donor</th>
 		    <th>Recipient Country</th>
 		    <th>Response type</th>
-		    <th>Entry date</th>
+		    <th>Last updated</th>
 		    <th>Description</th>
 		    <th>Status</th>
 		  </tr>
@@ -74,7 +74,7 @@ if current_user.role == '1' %>
 
 		<% @thisquestiontype= QuestionType.find(response.response_type)%>
 		    <td><%=h @thisquestiontype.name %></td>
-		    <td><%=h response.entry_date %></td>
+		    <td><%=h distance_of_time_in_words(response.entry_date, Time.now) %> ago</td>
 		    <td><%=h response.description %></td>
 		    <td><%=h response.status %></td>
 		<% if response.response_type == 1 %>

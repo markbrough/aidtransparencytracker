@@ -16,7 +16,10 @@ class UsersController < ApplicationController
   end
   
   def create
-    @user = User.new(params[:user])
+    @user_params = params[:user]
+    # if the user is not logged in do something special
+    @user_params[:role] = '2'
+    @user = User.new(@user_params)
     if @user.save
       flash[:notice] = "Account registered!"
       redirect_back_or_default account_url
