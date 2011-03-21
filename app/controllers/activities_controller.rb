@@ -45,11 +45,16 @@ class ActivitiesController < ApplicationController
 
   # GET /activities/1/edit
   def edit
-    @questions = Question.find(:all, :order => :id, :conditions => { :question_type => 1 } )
-    @activity = @response.activities.find(params[:id])
-    # was @activity = Activity.find(params[:id])
-  end
 
+	@questions = Question.find(:all, :order => :id, :conditions => { :question_type => 1 } )
+	if params[:id] == 'all'
+	    @activities = @response.activities
+	else 
+	    @activity = @response.activities.find(params[:id])
+	    # was @activity = Activity.find(params[:id])
+
+	end
+end 
   # POST /activities
   # POST /activities.xml
   def create

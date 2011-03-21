@@ -5,8 +5,8 @@ class ResponsesController < ApplicationController
   def index
 
     @responses = Response.all
-    @responses_user = Response.find(:all, :conditions => { :user_id => current_user.id } ) 
-
+    @responses_user = Response.find(:all, :conditions => { :user_id => current_user.id, :status => 10 } ) 
+    @responses_user_submitted = Response.find(:all, :conditions => { :user_id => current_user.id, :status => 11 } ) 
 #    @responses_donors = Response.find(:all, :group=>"donor_id")
    
 
@@ -81,24 +81,49 @@ class ResponsesController < ApplicationController
   def update
     @response = Response.find(params[:id])
 
+    
+  	@response.attributes = params[:response]
 
-    @response_params = params[:response]
+	  @response.activities.each { |a| a.attributes = params[:activity][a.id.to_s] }
+	  if @response.valid? && @response.activities.all?(&:valid?)
+	    @response.save!
+	    @response.activities.each(&:save!)
+	    redirect_to :action => 'show', :id => @response
+	  else
+	    render :action => 'edit'
+	  end
 
-    @response_params[:user_id] = current_user.id
-    # it's a CSO/user response
-    @response_params[:status] = '10'
-    @response_params[:entry_date] = Date.today
+	  
+  end
+
+  def submit_this
+     @responses_user = Response.find(:all, :conditions => { :user_id => current_user.id } )
+
+	@dothisone = ""
+	# prepare params
+	@theparams = {}
+	@responses_user.each do |response|
+
+		if (params[:"#{response.id}"] == '1')
+
+		   # @activity_params = params["#{question.id}"]
+		   # @activity_params[:entry_date] = Date.today
+		   # @activity = @response.activities.build(@activity_params)
+	
+			@theparams[:id] = response.id.to_s
+			@theparams[:status] = 11
+			@response = Response.find(response.id)
+			@response.attributes = @theparams
+			@response.save!
+		end
+
+	end
 
     respond_to do |format|
-      if @response.update_attributes(@response_params)
-        flash[:notice] = 'Response was successfully updated.'
-        format.html { redirect_to(@response) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @response.errors, :status => :unprocessable_entity }
-      end
+      format.html { redirect_to(responses_url) }
+      format.xml  { head :ok }
     end
+  
   end
 
   # DELETE /responses/1

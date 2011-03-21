@@ -1,0 +1,43 @@
+<% @response_id = params[:response_id] %>
+<% form_for(@response) do |f| %>
+	  <%= f.error_messages %>
+	<% @question_number=1 %>
+	<h3>There are <%= @questions.count %> questions in this section.</h3>
+	<% @questions.each do |tq| %>
+		<h2><%= @question_number.to_s + ". " + tq.question_long %></h2>
+		<% @question_number+=1 %>
+		<% if tq.example != "" %>
+			<h3><i>e.g. <%= tq.example %></i></h3>
+		<% end %>
+		<% # set up the values 
+		@activity = Activity.find(:all, :conditions=> { :response_id => @response_id, :question_id => tq.id })
+		@activity.each do |thisactivity|
+			@something = thisactivity.system
+		end
+		%>
+		<%= # hidden_field(activity_fields.id, :question_id, @activity[:question_id]) 
+%>
+
+		  <p>
+		    <%= select(@activity, :published, [ ['1) Yes, this donor publishes this information systematically for each activity', '1'],
+						['2) Yes, this donor publishes this information sporadically on an ad hoc basis', '2'],
+						['3) No, but this donor does collect this data', '3'],
+						['4) No, and this donor doesn\'t collect this data either', '4'],
+						['5) Don\'t know', '5']
+							]) %>
+		  </p>
+		  <p>Do you know which system it's stored in?<br />
+		    <%= text_field(tq.id, :system) %>
+		  </p>
+		  <p>
+		    <%= f.label :evidence %><br />
+		    <%= text_area(tq.id, :evidence, :rows => 2) %>
+		  </p>
+		  <p>
+		    <%= f.label :comments %><br />
+		    <%= text_area(tq.id, :comments, :rows => 4) %>
+		  </p>
+		<% end %>
+
+	    <%= submit_tag 'Submit' %>
+<% end %>

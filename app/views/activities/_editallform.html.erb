@@ -1,0 +1,18 @@
+<% @questions.each do |tq| %>
+	<% @response_id = params[:response_id] %>
+	<% @whichactivity = Activity.find(:all, :conditions=> { :response_id => @response_id, :question_id => tq.id })
+	@whichactivity.each do |wa|
+		%>
+		<%
+		 @activity=Activity.find(wa.id) 
+		%>
+<% form_tag :action => 'editall' do %>
+	<% fields_for(@activity) do |f| %>
+	<%= @activity.published %>
+	Published: <% f.check_box :published %>
+	<% end 
+	end
+
+	end
+%>
+<% end %>

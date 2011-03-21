@@ -5,6 +5,7 @@ if current_user.role == '1' %>
 
 	<table>
 	  <tr>
+	    <th></th>
 	    <th>User</th>
 	    <th>Donor</th>
 	    <th>Recipient Country</th>
@@ -13,9 +14,9 @@ if current_user.role == '1' %>
 	    <th>Description</th>
 	    <th>Status</th>
 	  </tr>
-
 	<% @responses.each do |response| %>
 	  <tr>
+	    <td><%= check_box(:submit_response) %>
 	<% @thisusername = User.find(response.user_id)%>
 	    <td><%=h link_to @thisusername.login, user_path(@thisusername.id) %></td>
 
@@ -27,7 +28,11 @@ if current_user.role == '1' %>
 
 	<% @thisquestiontype= QuestionType.find(response.response_type)%>
 	    <td><%=h @thisquestiontype.name %></td>
+<% if response.entry_date != '' %>
 	    <td><%=h distance_of_time_in_words(response.entry_date, Time.now) %> ago</td>
+<% else %>
+	    <td>Unknown</td>
+<% end %>
 	    <td><%=h response.description %></td>
 	    <td><%=h response.status %></td>
 		<% if response.response_type == 1 %>
@@ -46,26 +51,25 @@ if current_user.role == '1' %>
 
 	<br />
 <% else %>
+<div id="user_responses">
 <h1>Your current responses</h1>
 	<% if @responses_user.count > 0 %>
 
-<%	# show all organisation-level responses
-	# show all country-level responses below
-	# show all activity-level responses below
-%>
+<% form_tag(:action => :submit_this) do %>
 		<table>
 		  <tr>
+		    <th></th>
 		    <th>Donor</th>
 		    <th>Recipient Country</th>
 		    <th>Response type</th>
 		    <th>Last updated</th>
 		    <th>Description</th>
-		    <th>Status</th>
 		  </tr>
 
 		<% @responses_user.each do |response| %>
 		  <tr>
 
+	    <td><%= check_box_tag response.id %></td>
 		<% @thisdonorid= Donor.find(response.donor_id)%>
 		    <td><%=h @thisdonorid.name %></td>
 
@@ -74,9 +78,12 @@ if current_user.role == '1' %>
 
 		<% @thisquestiontype= QuestionType.find(response.response_type)%>
 		    <td><%=h @thisquestiontype.name %></td>
-		    <td><%=h distance_of_time_in_words(response.entry_date, Time.now) %> ago</td>
+		<% if response.entry_date %>
+			    <td><%=h distance_of_time_in_words(response.entry_date, Time.now) %> ago</td>
+		<% else %>
+			    <td>Unknown</td>
+		<% end %>
 		    <td><%=h response.description %></td>
-		    <td><%=h response.status %></td>
 		<% if response.response_type == 1 %>
 		    <td><%= link_to 'Activity Questions', response_activities_path(response) %></td>
 		<% elsif response.response_type == 2 %>
@@ -92,9 +99,63 @@ if current_user.role == '1' %>
 		</table>
 
 		<br />
+
+<p><%= submit_tag('Submit selected responses for donor verification') %></p>
+
+<% end %>
 	<% else %>
 		<p>You do not have any responses yet.</p>
 	<% end %>
+</div>
+<div id="user_submitted_responses">
+<h1>Your submitted responses</h1>
+	<% if @responses_user_submitted.count > 0 %>
+		<table>
+		  <tr>
+		    <th></th>
+		    <th>Donor</th>
+		    <th>Recipient Country</th>
+		    <th>Response type</th>
+		    <th>Last updated</th>
+		    <th>Description</th>
+		  </tr>
+
+		<% @responses_user_submitted.each do |response| %>
+		  <tr>
+		<% @thisdonorid= Donor.find(response.donor_id)%>
+		    <td><%=h @thisdonorid.name %></td>
+
+		<% @thisrecipientid= Country.find(response.recipient_id)%>
+		    <td><%=h @thisrecipientid.name %></td>
+
+		<% @thisquestiontype= QuestionType.find(response.response_type)%>
+		    <td><%=h @thisquestiontype.name %></td>
+		<% if response.entry_date %>
+			    <td><%=h distance_of_time_in_words(response.entry_date, Time.now) %> ago</td>
+		<% else %>
+			    <td>Unknown</td>
+		<% end %>
+		    <td><%=h response.description %></td>
+		<% if response.response_type == 1 %>
+		    <td><%= link_to 'Activity Questions', response_activities_path(response) %></td>
+		<% elsif response.response_type == 2 %>
+		    <td><%= link_to 'Country Questions', response_data_countries_path(response) %></td>
+		<% elsif response.response_type == 3 %>
+		    <td><%= link_to 'Organisation Questions', response_data_organisations_path(response) %></td>
+		<% end %>
+		    <td><%= link_to 'Show', response %></td>
+		    <td><%= link_to 'Edit', edit_response_path(response) %></td>
+		    <td><%= link_to 'Destroy', response, :confirm => 'Are you sure?', :method => :delete %></td>
+		  </tr>
+		<% end %>
+		</table>
+
+		<br />
+
+	<% else %>
+		<p>You have not submitted any responses yet.</p>
+	<% end %>
+</div>
 <% end %>
 
 <div id="bottom_buttons">

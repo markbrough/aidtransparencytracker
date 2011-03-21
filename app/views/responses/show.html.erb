@@ -1,47 +1,56 @@
-<p>
-  <b>User:</b>
-  <%=h @response.user_id %>
-</p>
+<h1><%= QuestionType.find(@response.response_type).name %> questions for <%= Donor.find(@response.donor_id).name %>
+<% if ((@response.response_type == 1) || (@response.response_type == 2)) %>
+ in <%= Country.find(@response.recipient_id).name %>
+<% end %></h1>
 
-<p>
-  <b>Donor:</b>
-  <%=h @response.donor_id %>
-</p>
-
-<p>
-  <b>Recipient:</b>
-  <%=h @response.recipient_id %>
-</p>
+<% if @response.entry_date %>
+	    <p><i>Entered <%=h distance_of_time_in_words(@response.entry_date, Time.now) %> ago</i></p>
+<% end %>
 
 <p>
   <b>Response type:</b>
   <%=h @response.response_type %>
-</p>
-
-<p>
-  <b>Entry date:</b>
-  <%=h @response.entry_date %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%=h @response.description %>
-</p>
+</p>		
 
 <p>
   <b>Status:</b>
   <%=h @response.status %>
 </p>
 
-<h3>Activities</h3>
 <table>
   <tr>
-    <th>Question number</th>
+    <th>Question</th>
+    <th>Published</th>
+    <th>Evidence</th>
+    <th>Comments</th>
   </tr>
-<% for activity in @response.activities %>
-<tr>
-  <td><%=h activity.question_id %></td>
-</tr>
+<% if (@response.response_type == 1) %>
+	<% for activity in @response.activities %>
+	<tr>
+	  <th><%=h Question.find(activity.question_id).question_short %></th>
+	  <th><%= activity.published %></th>
+	  <th><%= activity.evidence %></th>
+	  <th><%= activity.comments %></th>
+	</tr>
+	<% end %>
+<% elsif (@response.response_type == 2) %>
+	<% for data_country in @response.data_countries %>
+	<tr>
+	  <th><%=h Question.find(data_country.question_id).question_short %></th>
+	  <th><%= data_country.published %></th>
+	  <th><%= data_country.evidence %></th>
+	  <th><%= data_country.comments %></th>
+	</tr>
+	<% end %>
+<% elsif (@response.response_type == 3) %>
+	<% for data_organisation in @response.data_organisations %>
+	<tr>
+	  <th><%=h Question.find(data_organisation.question_id).question_short %></th>
+	  <th><%= data_organisation.published %></th>
+	  <th><%= data_organisation.evidence %></th>
+	  <th><%= data_organisation.comments %></th>
+	</tr>
+	<% end %>
 <% end %>
 </table>
 

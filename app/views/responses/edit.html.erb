@@ -1,6 +1,113 @@
-<h1>Editing response</h1>
+<h1>Editing <%= QuestionType.find(@response.response_type).name %> questions for <%= Donor.find(@response.donor_id).name %>
+<% if ((@response.response_type == 1) || (@response.response_type == 2)) %>
+ in <%= Country.find(@response.recipient_id).name %>
+<% end %></h1>
+<% @questions = Question.find(:all, :conditions => {:question_type => @response.response_type}) %>
+<% @question_number=1 %>
+<h3>There are <%= @questions.count %> questions in this section.</h3>
 
-<%= render :partial => 'form' %>
+<% form_for(@response) do %>
+<% if @response.response_type == 1 %>
+	<% for @activity in @response.activities %>
+	  <%= error_messages_for :activity %>
+	  <% fields_for "activity[]" do |f| %>
+	<% 
+	@thisquestion=Question.find(@activity[:question_id])
+	%>
+	<h3><%= @question_number.to_s + ". " + @thisquestion.question_long %></h3>
+<% @question_number+=1 %>
+
+	  <p>
+	<% published_options = {'1. Yes, this donor publishes this information systematically for each activity' => '1', '2. Yes, this donor publishes this information sporadically on an ad hoc basis' => '2', '3. No, but this donor does collect this data' => '3', '4. No, and this donor doesn\'t collect this data either' => '4', '5. Don\'t know' => '5'} 
+	list = published_options.sort
+	list.each {|x| %>
+	<%= f.radio_button :published, x[1] %> <%= h(x[0]) %><br />
+	<% } %>
+	 
+	  </p>
+	  <p>Do you know which system it's stored in?<br />
+	    <%= f.text_field :system %>
+	  </p>
+	  <p>
+	    <%= f.label :evidence %><br />
+	    <%= f.text_area(:evidence, :rows => 2) %>
+	  </p>
+	  <p>
+	    <%= f.label :comments %><br />
+	    <%= f.text_area(:comments, :rows => 4) %>
+	  </p>
+
+
+
+	  <% end %>
+	<% end %>
+<% elsif @response.response_type == 2 %>
+<% for @data_country in @response.data_countries %>
+  <%= error_messages_for :data_country %>
+  <% fields_for "data_country[]" do |f| %>
+<% 
+@thisquestion=Question.find(@data_country[:question_id])
+%>
+	<h3><%= @question_number.to_s + ". " + @thisquestion.question_long %></h3>
+<% @question_number+=1 %>
+
+  <p>
+<% published_options = {'1. Yes, this donor publishes this information systematically for each activity' => '1', '2. Yes, this donor publishes this information sporadically on an ad hoc basis' => '2', '3. No, but this donor does collect this data' => '3', '4. No, and this donor doesn\'t collect this data either' => '4', '5. Don\'t know' => '5'} 
+list = published_options.sort
+list.each {|x| %>
+<%= f.radio_button :published, x[1] %> <%= h(x[0]) %><br />
+<% } %>
+ 
+  </p>
+  <p>Do you know which system it's stored in?<br />
+    <%= f.text_field :system %>
+  </p>
+  <p>
+    <%= f.label :evidence %><br />
+    <%= f.text_area(:evidence, :rows => 2) %>
+  </p>
+  <p>
+    <%= f.label :comments %><br />
+    <%= f.text_area(:comments, :rows => 4) %>
+  </p>
+
+  <% end %>
+<% end %>
+<% elsif @response.response_type == 3 %>
+	<% for @data_organisation in @response.data_organisations %>
+	  <%= error_messages_for :data_organisation %>
+	  <% fields_for "data_organisation[]" do |f| %>
+	<% 
+	@thisquestion=Question.find(@data_organisation[:question_id])
+	%>
+	<h3><%= @question_number.to_s + ". " + @thisquestion.question_long %></h3>
+<% @question_number+=1 %>
+
+	  <p>
+	<% published_options = {'1. Yes, this donor publishes this information systematically for each activity' => '1', '2. Yes, this donor publishes this information sporadically on an ad hoc basis' => '2', '3. No, but this donor does collect this data' => '3', '4. No, and this donor doesn\'t collect this data either' => '4', '5. Don\'t know' => '5'} 
+	list = published_options.sort
+	list.each {|x| %>
+	<%= f.radio_button :published, x[1] %> <%= h(x[0]) %><br />
+	<% } %>
+	 
+	  </p>
+	  <p>
+	    <%= f.label :evidence %><br />
+	    <%= f.text_area(:evidence, :rows => 2) %>
+	  </p>
+	  <p>
+	    <%= f.label :comments %><br />
+	    <%= f.text_area(:comments, :rows => 4) %>
+	  </p>
+
+
+
+	  <% end %>
+	<% end %>
+<% end %>
+
+<p><%= submit_tag 'Update' %></p>
+<% end %>
 
 <%= link_to 'Show', @response %> |
 <%= link_to 'Back', responses_path %>
