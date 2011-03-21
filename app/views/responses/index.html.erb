@@ -120,8 +120,6 @@ if current_user.role == '1' %>
 		<% end %>
 		    <td><%=h response.description %></td>
 		    <td><%= link_to 'Show', response %></td>
-		    <td><%= link_to 'Edit', edit_response_path(response) %></td>
-		    <td><%= link_to 'Destroy', response, :confirm => 'Are you sure?', :method => :delete %></td>
 		  </tr>
 		<% end %>
 		</table>
