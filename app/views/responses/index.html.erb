@@ -16,7 +16,6 @@ if current_user.role == '1' %>
 	  </tr>
 	<% @responses.each do |response| %>
 	  <tr>
-	    <td><%= check_box(:submit_response) %>
 	<% @thisusername = User.find(response.user_id)%>
 	    <td><%=h link_to @thisusername.login, user_path(@thisusername.id) %></td>
 
