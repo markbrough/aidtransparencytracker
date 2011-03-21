@@ -53,7 +53,7 @@
 	<% end %>
 <% end %>
 </table>
-<% unless ((response.status == 10) || (user.role == 1)) %>
+<% unless ((response.status == 10) || (current_user.role == 1)) %>
 <%= link_to 'Edit', edit_response_path(@response) %> |
 <% end %>
 <%= link_to 'Back', responses_path %>
