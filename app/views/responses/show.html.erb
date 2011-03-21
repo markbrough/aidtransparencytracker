@@ -53,6 +53,7 @@
 	<% end %>
 <% end %>
 </table>
-
+<% if response.status != 10 %>
 <%= link_to 'Edit', edit_response_path(@response) %> |
+<% end %>
 <%= link_to 'Back', responses_path %>
