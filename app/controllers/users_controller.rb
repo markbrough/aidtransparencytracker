@@ -17,8 +17,12 @@ class UsersController < ApplicationController
   
   def create
     @user_params = params[:user]
-    # if the user is not logged in do something special
-    @user_params[:role] = '2'
+    # if the user is not logged in, then restrict roles
+	if current_user
+		if current_user.role != '1'
+	    	  @user_params[:role] = '2'
+		end
+	end
     @user = User.new(@user_params)
     if @user.save
       flash[:notice] = "Account registered!"
@@ -29,18 +33,40 @@ class UsersController < ApplicationController
   end
   
   def show
-    @user = @current_user
+	# admin can change all users
+	if current_user.role == '1'
+	  @user = User.find(params[:id])
+	else
+	# other users can only change themselves
+	  @user = @current_user
+	end
   end
 
   def edit
-    @user = @current_user
+	# admin can change all users
+	if current_user.role == '1'
+	  @user = User.find(params[:id])
+	else
+	# other users can only change themselves
+	  @user = @current_user
+	end
   end
   
   def update
-    @user = @current_user # makes our views "cleaner" and more consistent
+	# admin can change all users
+	if current_user.role == '1'
+	  @user = User.find(params[:id])
+	else
+	# other users can only change themselves
+	  @user = @current_user
+	end
     if @user.update_attributes(params[:user])
       flash[:notice] = "Account updated!"
-      redirect_to account_url
+	if current_user.role == '1'
+	      redirect_to users_url
+	else
+	      redirect_to account_url
+	end
     else
       render :action => :edit
     end

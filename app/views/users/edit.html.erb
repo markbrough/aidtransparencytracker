@@ -1,9 +1,19 @@
 <h1>Edit My Account</h1>
 
-<% form_for @user, :url => account_path do |f| %>
-  <%= f.error_messages %>
-  <%= render :partial => "form", :object => f %>
-  <%= f.submit "Update" %>
-<% end %>
+<% if current_user.role == '1' %>
+	<% form_for @user do |f| %>
+	  <%= f.error_messages %>
+	  <%= render :partial => "form", :object => f %>
+	  <%= f.submit "Update" %>
+	<% end %>
+
+<br /><%= link_to "Back", users_path %>
+<% else %>
+	<% form_for @user, :url => account_path do |f| %>
+	  <%= f.error_messages %>
+	  <%= render :partial => "form", :object => f %>
+	  <%= f.submit "Update" %>
+	<% end %>
 
 <br /><%= link_to "My Profile", account_path %>
+<% end %>

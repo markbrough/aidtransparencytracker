@@ -1,17 +1,37 @@
-<%= form.label :login %><br />
+<b>Username:</b><br />
 <%= form.text_field :login %><br />
-<%= form.label :email %><br />
+<b>Email address:</b><br />
 <%= form.text_field :email %><br />
-<%= form.label :organisation_name %><br />
+<b>Organisation name:</b><br />
 <%= form.text_field :organisation_name %><br />
-<%= form.label :country_id %><br />
+<b>Country:</b><br />
 <%= form.select :country_id, Country.find(:all , :order => "id") . collect { |s|#
 	[(s.name), s.id]} %><br />
-<%= form.label :role %><br />
-<%= form.text_field :role %><br />
-<br />
-<%= form.label :password, form.object.new_record? ? nil : "Change password" %><br />
+<% if current_user %>
+<% if current_user.role == '1' %>
+	<%= form.label :role %><br />
+	<%= form.text_field :role %><br />
+<% else %>
+<b>Organisation type:</b><br />
+	<% published_options = {'Civil Society Organisation' => '1', 'Donor' => '2', 'Individual' => '3'} 
+	list = published_options.sort
+	list.each {|x| %>
+	<%= radio_button('type', :organisation_type, x[1]) %> <%= h(x[0]) %><br />
+	<% } %>
+  </p>
+<% end %>
+<% else %>
+<b>Organisation type</b><br />
+	<% published_options = {'Civil Society Organisation' => '1', 'Donor' => '2', 'Individual' => '3'} 
+	list = published_options.sort
+	list.each {|x| %>
+	<%= radio_button('type', :organisation_type, x[1]) %> <%= h(x[0]) %><br />
+	<% } %>
+  </p>
+<% end %>
+
+<b><%= form.label :password, form.object.new_record? ? nil : "Change password" %></b><br />
 <%= form.password_field :password %><br />
 <br />
-<%= form.label :password_confirmation %><br />
+<b><%= form.label :password_confirmation %></b><br />
 <%= form.password_field :password_confirmation %><br />

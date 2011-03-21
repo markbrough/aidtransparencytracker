@@ -6,7 +6,10 @@
 <% @question_number=1 %>
 <h3>There are <%= @questions.count %> questions in this section.</h3>
 
-<% form_for(@response) do %>
+<% form_for(@response) do |r| %>
+<p><b>Overall description for this response</b> (optional):<br />
+<%= r.text_area(:description, :rows => 3) %>
+</p>
 <% if @response.response_type == 1 %>
 	<% for @activity in @response.activities %>
 	  <%= error_messages_for :activity %>

@@ -4,56 +4,94 @@
 <% end %></h1>
 
 <% if @response.entry_date %>
-	    <p><i>Entered <%=h distance_of_time_in_words(@response.entry_date, Time.now) %> ago</i></p>
+	    <p><i>Created <%=h distance_of_time_in_words(@response.entry_date, Time.now) %> ago</i></p>
 <% end %>
-
-<p>
-  <b>Response type:</b>
-  <%=h @response.response_type %>
-</p>		
 
 <p>
   <b>Status:</b>
-  <%=h @response.status %>
-</p>
-
-<table>
-  <tr>
-    <th>Question</th>
-    <th>Published</th>
-    <th>Evidence</th>
-    <th>Comments</th>
-  </tr>
-<% if (@response.response_type == 1) %>
-	<% for activity in @response.activities %>
-	<tr>
-	  <th><%=h Question.find(activity.question_id).question_short %></th>
-	  <th><%= activity.published %></th>
-	  <th><%= activity.evidence %></th>
-	  <th><%= activity.comments %></th>
-	</tr>
-	<% end %>
-<% elsif (@response.response_type == 2) %>
-	<% for data_country in @response.data_countries %>
-	<tr>
-	  <th><%=h Question.find(data_country.question_id).question_short %></th>
-	  <th><%= data_country.published %></th>
-	  <th><%= data_country.evidence %></th>
-	  <th><%= data_country.comments %></th>
-	</tr>
-	<% end %>
-<% elsif (@response.response_type == 3) %>
-	<% for data_organisation in @response.data_organisations %>
-	<tr>
-	  <th><%=h Question.find(data_organisation.question_id).question_short %></th>
-	  <th><%= data_organisation.published %></th>
-	  <th><%= data_organisation.evidence %></th>
-	  <th><%= data_organisation.comments %></th>
-	</tr>
-	<% end %>
+<% if @response.status == 10 %>
+  Editing
+<% elsif @response.status == 11 %>
+  Submitted to donor
 <% end %>
-</table>
-<% unless ((response.status == 10) || (current_user.role == 1)) %>
-<%= link_to 'Edit', edit_response_path(@response) %> |
+</p>
+<% if (((@response.response_type == 1) && (@response.activities.count >0)) || ((@response.response_type == 2) && (@response.data_countries.count >0)) || ((@response.response_type == 3) && (@response.data_organisations.count >0))) %>
+	<table>
+	  <tr>
+	    <th>Question</th>
+	    <th>Published</th>
+	    <th>Evidence</th>
+	    <th>Comments</th>
+	  </tr>
+	<% if (@response.response_type == 1) %>
+		<% for activity in @response.activities %>
+		<tr>
+		  <td><%=h Question.find(activity.question_id).question_short %></td>
+		<% if activity.published == 1 %>
+				  <td>Systematically</td>
+		<% elsif activity.published == 2 %>
+				  <td>Ad hoc</td>
+		<% elsif activity.published == 3 %>
+				  <td>No, but collected</td>
+		<% elsif activity.published == 4 %>
+				  <td>No, and not collected</td>
+		<% elsif activity.published == 5 %>
+				  <td>Unknown</td>
+		<% end %>
+		  <td><%= activity.evidence %></td>
+		  <td><%= activity.comments %></td>
+		</tr>
+		<% end %>
+	<% elsif (@response.response_type == 2) %>
+		<% for data_country in @response.data_countries %>
+		<tr>
+		  <td><%=h Question.find(data_country.question_id).question_short %></td>
+		<% if data_country.published == 1 %>
+				  <td>Systematically</td>
+		<% elsif data_country.published == 2 %>
+				  <td>Ad hoc</td>
+		<% elsif data_country.published == 3 %>
+				  <td>No, but collected</td>
+		<% elsif data_country.published == 4 %>
+				  <td>No, and not collected</td>
+		<% elsif data_country.published == 5 %>
+				  <td>Unknown</td>
+		<% end %>
+		  <td><%= data_country.evidence %></td>
+		  <td><%= data_country.comments %></td>
+		</tr>
+		<% end %>
+	<% elsif (@response.response_type == 3) %>
+		<% for data_organisation in @response.data_organisations %>
+		<tr>
+		  <td><%=h Question.find(data_organisation.question_id).question_short %></td>
+		<% if data_organisation.published == 1 %>
+				  <td>Systematically</td>
+		<% elsif data_organisation.published == 2 %>
+				  <td>Ad hoc</td>
+		<% elsif data_organisation.published == 3 %>
+				  <td>No, but collected</td>
+		<% elsif data_organisation.published == 4 %>
+				  <td>No, and not collected</td>
+		<% elsif data_organisation.published == 5 %>
+				  <td>Unknown</td>
+		<% end %>
+		  <td><%= data_organisation.evidence %></td>
+		  <td><%= data_organisation.comments %></td>
+		</tr>
+		<% end %>
+	<% end %>
+	</table>
+<% end %>
+<% if ((response.status == '10') || (current_user.role == '1')) %>
+	<% if ((@response.response_type==3) && (@response.data_organisations.count == 0)) %>
+		You have not started answering any questions in this section yet. <%= link_to('Answer the organisation-level questions', new_response_data_organisation_path(@response)) %>
+	<% elsif ((@response.response_type==2) && (@response.data_countries.count == 0)) %>
+		You have not started answering any questions in this section yet. <%= link_to('Answer the country-level questions', new_response_data_country_path(@response)) %>
+	<% elsif ((@response.response_type==1) && (@response.activities.count == 0)) %>
+		You have not started answering any questions in this section yet. <%= link_to('Answer the activity-level questions', new_response_activity_path(@response)) %>
+	<% else %>
+	<%= link_to 'Edit', edit_response_path(@response) %> |
+	<% end %>
 <% end %>
 <%= link_to 'Back', responses_path %>
